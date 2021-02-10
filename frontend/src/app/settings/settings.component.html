@@ -1,0 +1,286 @@
+<form (ngSubmit)="saveChanges()" novalidate [formGroup]="this.settingsForm">
+
+  <div class="row justify-content-between align-items-center">
+    <div class="col">
+      <div class="row align-items-center">
+        <div class="col-auto">
+
+          <!-- Avatar -->
+          <div class="avatar">
+            <img class="avatar-img rounded-circle" src="assets/img/avatars/profiles/avatar-1.jpg" alt="...">
+          </div>
+
+        </div>
+        <div class="col ml-n2">
+
+          <!-- Heading -->
+          <h4 class="mb-1">
+            Your avatar
+          </h4>
+
+          <!-- Text -->
+          <small class="text-muted">
+            Image size limited to 1000x1000px.
+          </small>
+
+        </div>
+      </div> <!-- / .row -->
+    </div>
+    <div class="col-auto">
+
+      <!-- Button -->
+      <button class="btn btn-sm btn-primary">
+        Upload
+      </button>
+
+    </div>
+  </div> <!-- / .row -->
+
+  <!-- Divider -->
+  <hr class="my-5">
+  <div>
+    <!-- Form text -->
+    <small class="form-text text-muted">
+      First and last names, as well as email addresses will be publically visable
+    </small>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+
+      <!-- First name -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label>
+          First name
+        </label>
+
+        <!-- Input -->
+        <input type="text" class="form-control">
+
+      </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+      <!-- Last name -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label>
+          Last name
+        </label>
+
+        <!-- Input -->
+        <input type="text" class="form-control">
+
+      </div>
+
+    </div>
+
+    <div class="col-12">
+
+      <!-- Email address -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label class="mb-1">
+          Email address (to be contacted at)
+        </label>
+
+
+        <!-- Input -->
+        <input [ngClass]="{
+    'is-invalid': !formControls.email.valid && formControls.email.dirty
+}" type="email" formControlName="email" class="form-control" placeholder="name@address.com">
+        <div [hidden]="formControls.email.valid" class="invalid-feedback">
+          Please enter a valid email address.
+        </div>
+
+      </div>
+
+      <br>
+      <!-- Birthday -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label>
+          Availability
+        </label>
+
+        <!-- Input -->
+        <input type="text" class="form-control flatpickr-input" data-toggle="flatpickr" readonly="readonly">
+
+      </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+      <!-- Phone -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label>
+        Phone (optional)
+        </label>
+
+        <!-- Input -->
+        <input type="text" class="form-control mb-3" placeholder="(___)___-____" data-mask="(000) 000-0000" autocomplete="off" maxlength="14">
+
+      </div>
+
+    </div>
+
+  <div class="col-12 col-md-12">
+
+    <!-- Phone -->
+    <div class="form-group">
+
+      <!-- Label -->
+      <label>
+        New Password
+      </label>
+
+      <!-- Input -->
+      <input [ngClass]="{
+
+    'is-invalid': !formControls.password.valid && formControls.password.dirty
+}" formControlName="password"  type="password" class="form-control form-control-appended" placeholder="Choose a password">
+
+      <!-- Icon -->
+      <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fe fe-eye"></i>
+                        </span>
+      </div>
+      <div [hidden]="formControls.password.valid" class="invalid-feedback">
+        Please enter a new password.
+      </div>
+    </div>
+
+  </div>
+
+  </div> <!-- / .row -->
+
+
+  <button class="btn btn-primary">
+    Change Password
+  </button>
+
+  <hr>
+
+  <!-- Button -->
+  <button class="btn btn-primary">
+    Save changes
+  </button>
+
+
+
+  <!-- Divider -->
+  <hr class="my-5">
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+
+      <!-- Public profile -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label class="mb-1">
+          Public profile
+        </label>
+
+        <!-- Form text -->
+        <small class="form-text text-muted">
+          Making your profile public means that anyone on <i>thirteen club</i>'s network will be able to view your profile.
+        </small>
+
+        <div class="row">
+          <div class="col-auto">
+
+            <!-- Switch -->
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="switchOne">
+              <label class="custom-control-label" for="switchOne"></label>
+            </div>
+
+          </div>
+<!--          <div class="col ml-n2">-->
+
+<!--            &lt;!&ndash; Help text &ndash;&gt;-->
+<!--            <small class="text-muted">-->
+<!--              You're currently invisible-->
+<!--            </small>-->
+
+<!--          </div>-->
+        </div> <!-- / .row -->
+      </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+      <!-- Allow for additional Bookings -->
+      <div class="form-group">
+
+        <!-- Label -->
+        <label class="mb-1">
+          Allow for additional Bookings
+        </label>
+
+        <!-- Form text -->
+        <small class="form-text text-muted">
+          If you are available for hire outside of the current situation, you can encourage others to reach out for similar opportunities.
+        </small>
+
+        <div class="row">
+          <div class="col-auto">
+
+            <!-- Switch -->
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="switchTwo" checked="">
+              <label class="custom-control-label" for="switchTwo"></label>
+            </div>
+
+          </div>
+<!--          <div class="col ml-n2">-->
+
+<!--            &lt;!&ndash; Help text &ndash;&gt;-->
+<!--            <small class="text-muted">-->
+<!--              You're currently available-->
+<!--            </small>-->
+
+<!--          </div>-->
+        </div> <!-- / .row -->
+      </div>
+
+    </div>
+  </div> <!-- / .row -->
+
+  <!-- Divider -->
+  <hr class="mt-4 mb-5">
+
+  <div *ngIf="false" class="row justify-content-between">
+    <div class="col-12 col-md-6">
+
+      <!-- Heading -->
+      <h4>
+        Delete your account
+      </h4>
+
+      <!-- Text -->
+      <p class="small text-muted mb-md-0">
+        Please note, deleting your account is a permanent action and will no be recoverable once completed.
+      </p>
+
+    </div>
+    <div class="col-auto">
+
+      <!-- Button -->
+      <button class="btn btn-danger">
+        Delete
+      </button>
+
+    </div>
+  </div> <!-- / .row -->
+
+</form>
