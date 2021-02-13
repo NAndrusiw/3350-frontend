@@ -1,28 +1,22 @@
 import {Injectable} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
 
+    constructor(private http: HttpClient) {}
 
-    usersList: AngularFirestoreCollection<any>;
 
-    constructor(private firestore: AngularFirestore) {
-
+    createNewUser(payload) {
+        return this.http.post(`${environment.baseURL}user/register`, payload);
     }
-
-
-    getAllUsers() {
-        this.usersList = this.firestore.collection('users');
-        return this.usersList.snapshotChanges();
+    userLogin(payload) {
+        return this.http.post(`${environment.baseURL}login`, payload);
     }
-
-    isUserDisabled(user) {
-       return user.activated == false;
+    getProtectedData() {
+        return this.http.get(`${environment.baseURL}user/data`);
     }
-
-
 }

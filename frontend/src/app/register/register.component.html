@@ -11,6 +11,7 @@
             It'll only take seconds.
         </p>
 
+
         <!-- Form -->
         <form (ngSubmit)="register()" novalidate [formGroup]="this.auth.registerForm">
 
@@ -40,7 +41,7 @@
                 <!-- Input -->
                 <input [ngClass]="{
     'is-invalid': !formControls.email.valid && formControls.email.dirty
-}" type="email" formControlName="email" class="form-control" placeholder="name@address.com">
+}" type="email" formControlName="email" class="form-control" placeholder="name@uwo.com">
                 <div [hidden]="formControls.email.valid" class="invalid-feedback">
                     Please enter a valid email address.
                 </div>

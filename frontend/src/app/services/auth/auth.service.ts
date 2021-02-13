@@ -3,24 +3,25 @@ import {Injectable, NgZone} from '@angular/core';
 // import firebase from 'firebase/app';
 // import {AngularFireAuth} from "@angular/fire/auth";
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
-// import {
-//     AngularFirestore,
-//     AngularFirestoreDocument
-// } from "@angular/fire/firestore";
-//
-// import {Observable, of} from "rxjs";
-// import {switchMap} from "rxjs/operators";
-// import {User} from "../user.model";
-// import {log} from "util";
+import {HttpClient} from '@angular/common/http';
+import * as moment from "moment";
+import {Observable} from 'rxjs';
+import {map, shareReplay, take, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+const API_URL = 'http://localhost:3000';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    isLoggedIn: boolean;
     // user$: Observable<User>;
+
+    public isSignedIn;
+
+    constructor(private http: HttpClient, private router: Router) {
+        this.isSignedIn = localStorage.getItem('Token') != null && localStorage.getItem('Token') !== 'undefined';
+    }
 
     registerForm = new FormGroup({
         displayName: new FormControl('', Validators.required),
@@ -32,6 +33,56 @@ export class AuthService {
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
     });
+
+    logout() {
+        localStorage.removeItem('Token');
+        this.router.navigate([ '/login' ]);
+    }
+
+    getUser() {
+        return JSON.parse(localStorage.getItem('User'));
+    }
+
+    getUserName() {
+        return this.getUser().data.name;
+    }
+
+
+    // login(email: string, password: string) {
+    //     // return this.http.post(API_URL + '/login', {email, password})
+    //     //     .subscribe(data => console.log(data),
+    //     //         error => console.log(error))
+    //     //     // .tap(res => this.setSession)
+    //     //     // .shareReplay();
+    // }
+    //
+    // private setSession(authResult) {
+    //     const expiresAt = moment().add(authResult.expiresIn,'second');
+    //
+    //     localStorage.setItem('id_token', authResult.idToken);
+    //     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    // }
+    //
+    // logout() {
+    //     localStorage.removeItem("id_token");
+    //     localStorage.removeItem("expires_at");
+    // }
+    //
+    // public isLoggedIn() {
+    //     return moment().isBefore(this.getExpiration());
+    // }
+    //
+    // isLoggedOut() {
+    //     return !this.isLoggedIn();
+    // }
+    //
+    // getExpiration() {
+    //     const expiration = localStorage.getItem("expires_at");
+    //     const expiresAt = JSON.parse(expiration);
+    //     return moment(expiresAt);
+    // }
+
+
 //
 //     constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private ngZone: NgZone) {
 //         // the authentication state of the user

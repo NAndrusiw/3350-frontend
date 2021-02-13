@@ -8,7 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
 
+
+
+
+//
+// export function tokenGetter() {
+//   return localStorage.getItem("access_token");
+// }
 
 @NgModule({
   declarations: [
@@ -22,9 +31,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpConfigInterceptor,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
