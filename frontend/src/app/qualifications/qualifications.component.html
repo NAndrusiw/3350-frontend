@@ -1,8 +1,9 @@
-<div>
+<div class="row">
+  <div class="col-md-8">
   <form (ngSubmit)="submitQualificationsForm()" [formGroup]="qualificationsForm" novalidate>
 
     <h1 class="text-primary">Minimum Requirements</h1>
-      <h5>  Any requirements you may have for an applicant can be outlined here. All fields are optional</h5>
+      <div class="alert alert-light">  Any requirements you may have for an applicant can be outlined here. All fields are optional</div>
 
       <text-input [formGroup]="qualificationsForm" label="Course Code" name="courseCode" validate="true"></text-input>
       <text-input [formGroup]="qualificationsForm" label="Degree/Field of study" placeholder="preferred degree/ field of study" name="degree" validate="true"></text-input>
@@ -14,4 +15,5 @@
 
 
   </form>
+</div>
 </div>

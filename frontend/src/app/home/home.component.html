@@ -1,8 +1,21 @@
-<div style="text-align: center; color: 	#9932CC; font-family: Georgia, serif;"><h1>Instructor Postings</h1></div>
+<!--<div style="text-align: center; color: 	#9932CC; font-family: Georgia, serif;"><h1>Instructor Postings</h1></div>-->
 
-<br>
-<app-qualifications></app-qualifications>
+<!--<br>-->
+<!--<app-qualifications></app-qualifications>-->
 
-<br>
-<br>
-<app-test-questions></app-test-questions>
+<!--<br>-->
+<!--<br>-->
+<!--<app-test-questions></app-test-questions>-->
+
+
+<h1>Hello, {{ auth.getUserName() }}</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6"><button routerLink="qualifications" class="btn btn-block btn-info btn-lg">Instructor Postings</button></div>
+      <div class="col-md-6"><button routerLink="test-questions" class="btn btn-block btn-light btn-lg">Test Questions</button></div>
+
+    </div>
+  </div>
+</div>

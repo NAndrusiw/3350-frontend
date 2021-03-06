@@ -27,13 +27,32 @@ export class TestQuestionsComponent implements OnInit {
 
   submitQuestionsForm() {
 
-    let questionsData = this.testQuestionsForm.value;
+    let questions = this.testQuestionsForm.value;
 
 
-    let questions = {
-      question1: questionsData.value.question1,
 
-    }
+    // alert(1);
+    this.dataService.qualificationsData(questions).subscribe(
+      (data: any) => {
+        console.log(data);
+
+        this.testQuestionsForm.reset();
+
+        alert('Done, but not yet synced to db!');
+      },
+      (err: HttpErrorResponse) => {
+
+        window.alert(err.error)
+      }
+    );
+
+    // let questions = {
+    //   courseCode: questionsData.value.courseCode,
+    //   question1: questionsData.value.question1,
+    //   question2: questionsData.value.question1,
+    //   question3: questionsData.value.question1
+    //
+    // }
 
   }
   ngOnInit(): void {
