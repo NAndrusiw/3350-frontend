@@ -11,12 +11,12 @@ constructor(private http: HttpClient) {}
 
   questionsData(questions)
   {
-    return this.http.post(`${environment.baseURL}questions`, questions);
+    return this.http.post(`${environment.baseURL}api/questions`, questions);
   }
 
   qualificationsData(qualifications)
   {
-    return this.http.post(`${environment.baseURL}qualifications`, qualifications);
+    return this.http.post(`${environment.baseURL}api/qualificationsForm`, qualifications);
   }
 
 }

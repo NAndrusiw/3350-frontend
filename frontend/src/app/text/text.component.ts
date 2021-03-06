@@ -1,23 +1,19 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ControlContainer, FormGroup, FormGroupDirective} from "@angular/forms";
 
 @Component({
-  selector: 'text',
-  template: `
-    <div class="form-group">
-      <label  class="form-label"><b>{{ label }}:</b></label>
-      <input  [formControlName]="validate ? 'name' : null" type="text" class="form-control" id="courseCode" placeholder="{{ placeholder }}">
-    </div>
-  `,
-  styles: [
-  ],
-  encapsulation: ViewEncapsulation.Native
+  selector: 'text-input',
+  templateUrl: './text.component.html',
+  styleUrls: ['./text.component.scss'],
+  // viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class TextComponent implements OnInit {
 
   @Input() label: string;
-  @Input() name: string;
-  @Input() placeholder: string;
   @Input() validate: boolean;
+  @Input() placeholder: string;
+  @Input() name: string;
+  @Input() formGroup: FormGroup;
 
   constructor() { }
 

@@ -10,8 +10,9 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
-
-
+import { TestQuestionsComponent } from './test-questions/test-questions.component';
+import { QualificationsComponent } from './qualifications/qualifications.component';
+import { TextComponent } from './text/text.component';
 
 
 //
@@ -24,7 +25,10 @@ import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TestQuestionsComponent,
+    QualificationsComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
@@ -41,5 +45,6 @@ import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
     // }
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
