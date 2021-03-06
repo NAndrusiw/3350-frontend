@@ -1,0 +1,17 @@
+<div>
+  <form (ngSubmit)="submitQualificationsForm()" [formGroup]="qualificationsForm" novalidate>
+
+    <h1 class="text-primary">Minimum Requirements</h1>
+      <h5>  Any requirements you may have for an applicant can be outlined here. All fields are optional</h5>
+
+      <text-input [formGroup]="qualificationsForm" label="Course Code" name="courseCode" validate="true"></text-input>
+      <text-input [formGroup]="qualificationsForm" label="Degree/Field of study" placeholder="preferred degree/ field of study" name="degree" validate="true"></text-input>
+      <text-input [formGroup]="qualificationsForm" label="Required Weekly Hours of Applicant" placeholder="ex. 20" name="requiredTAHours" validate="true"></text-input>
+      <text-input [formGroup]="qualificationsForm" label="Other" placeholder="other requirement #1" name="requiredDescription" validate="true"></text-input>
+
+
+      <button [disabled]="qualificationsForm.status != 'VALID'" type="submit" class="btn btn-primary">Submit</button>
+
+
+  </form>
+</div>

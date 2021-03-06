@@ -1,0 +1,26 @@
+<div>
+
+  <form (ngSubmit)="submitQuestionsForm()" novalidate>
+
+  <div class="mb-3">
+      <div style ="color: #9932CC;"><h2>Questions for Applicants</h2></div>
+      <div style="color: grey;"><i><h5>  Any questions you may have for an applicant to respond to can be determined below. All fields are optional</h5></i>
+
+      </div>
+    </div>
+    <br>
+    <div>
+      <label  class="form-label"><b>Course Code:</b></label>
+      <input type="text" class="form-control" id="courseCode" placeholder="ex. SE3350">
+      <label  class="form-label"><b>Your Name</b></label>
+      <input type="text" class="form-control" id="instructorName" placeholder="Name">
+
+      <label  class="form-label"><b>Questions for Applicants:</b></label>
+      <input type="text" class="form-control" id="questionsFormQ1" placeholder="Question#1">
+      <input type="text" class="form-control" id="questionsFormQ2" placeholder="Question#2">
+      <input type="text" class="form-control" id="questionsFormQ3" placeholder="Question#3">
+      <br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
