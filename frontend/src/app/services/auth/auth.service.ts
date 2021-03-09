@@ -24,7 +24,7 @@ export class AuthService {
     }
 
     registerForm = new FormGroup({
-        displayName: new FormControl('', Validators.required),
+        name: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
     });
@@ -33,6 +33,12 @@ export class AuthService {
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
     });
+
+    instructorForm = new FormGroup({
+        name: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        username: new FormControl('', Validators.required),
+    })
 
     logout() {
         localStorage.removeItem('Token');
@@ -45,6 +51,14 @@ export class AuthService {
 
     getUserName() {
         return this.getUser().data.name;
+    }
+
+    isInstructor() {
+        return this.getUser().data.role === 'instructor';
+    }
+
+    isDepartment() {
+        return this.getUser().data.role === 'department';
     }
 
 

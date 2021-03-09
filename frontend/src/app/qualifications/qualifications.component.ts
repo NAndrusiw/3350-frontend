@@ -4,12 +4,16 @@ import {Router} from '@angular/router';
 import {DataService} from '../services/forms/data.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {AuthService} from '../services/auth/auth.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-qualifications',
   templateUrl: './qualifications.component.html',
   styleUrls: ['./qualifications.component.scss']
 })
+
+
 export class QualificationsComponent implements OnInit {
   qualificationsForm = new FormGroup({
 
@@ -20,13 +24,19 @@ export class QualificationsComponent implements OnInit {
   });
   formControls = this.qualificationsForm.controls;
 
-  constructor(public dataService: DataService, private router: Router, private http: HttpClient) {
+  constructor(public dataService: DataService, private router: Router, private http: HttpClient, private auth: AuthService) {
+
+
+    const helper = new JwtHelperService();
 
   }
 
   submitQualificationsForm(){
 
     let qualifications = this.qualificationsForm.value;
+
+    qualifications.userId =
+    qualifications.instructorName = this.auth.getUserName();
 
     // alert(1);
     this.dataService.qualificationsData(qualifications).subscribe(

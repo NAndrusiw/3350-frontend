@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/list.js/dist/list.min.js"
+            ]
           },
           "configurations": {
             "production": {

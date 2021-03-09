@@ -1,0 +1,122 @@
+<form *ngIf="!accountCreated" (ngSubmit)="createAccount()">
+
+    <div class="row justify-content-between align-items-center">
+        <div class="col">
+            <div class="row align-items-center">
+                <!--                            <div class="col-auto">-->
+
+                <!--                                &lt;!&ndash; Avatar &ndash;&gt;-->
+                <!--                                <div class="avatar">-->
+                <!--                                    <img class="avatar-img rounded-circle" src="assets/img/avatars/profiles/avatar-1.jpg" alt="...">-->
+                <!--                                </div>-->
+
+                <!--                            </div>-->
+                <!--                            <div class="col ml-n2">-->
+                <!--                                &lt;!&ndash; Heading &ndash;&gt;-->
+                <!--                                <h3 class="mb-1">-->
+                <!--                                    Your new account is almost ready.-->
+                <!--                                </h3>-->
+
+                <!--                                &lt;!&ndash; Text &ndash;&gt;-->
+                <!--                                <small class="text-muted">-->
+                <!--                                    Choose a password and you're ready to go!-->
+                <!--                                </small>-->
+                <!--                            </div>-->
+
+                <div class="col-auto">
+
+                    <!-- Avatar -->
+                    <div class="avatar">
+                        <img class="avatar-img rounded-circle" src="assets/img/avatars/profiles/avatar-1.jpg" alt="...">
+                    </div>
+
+                </div>
+                <div class="col ml-n2">
+                    <!-- Heading -->
+                    <h3 class="mb-1">
+                        Create a new account for an instructor.
+                    </h3>
+
+                    <!-- Text -->
+                    <small class="text-muted">
+                        The instructor will receive an email with a link to choose their password and finish their registration.
+                    </small>
+                </div>
+
+
+            </div> <!-- / .row -->
+        </div>
+    </div> <!-- / .row -->
+
+           <!-- Divider -->
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <text-input [formGroup]="this.auth.instructorForm" label="Name" name="name" validate="true"></text-input>
+        </div>
+
+        <div class="col-12">
+            <text-input [formGroup]="this.auth.instructorForm" helper="This is their personal email address which will receive an email to finish their registration." label="Email" name="email" validate="true"></text-input>
+        </div>
+
+
+        <div class="col-12 col-md-6">
+            <text-input [formGroup]="this.auth.instructorForm" label="UWO Username" name="username" validate="true"></text-input>
+        </div>
+        <div class="col-12 col-md-6">
+
+            <!-- Last name -->
+            <div class="form-group">
+
+                <!-- Label -->
+                <label>
+                    UWO Email
+                </label>
+
+                <!-- Input -->
+                <input type="text" disabled placeholder="Automatically generated" class="form-control">
+
+            </div>
+
+        </div>
+
+
+    </div> <!-- / .row -->
+
+           <!-- Button -->
+    <button type="submit" [disabled]="this.auth.instructorForm.invalid" class="btn btn-primary">
+        Create Account & Send Registration Link
+    </button>
+
+
+</form>
+
+<div *ngIf="accountCreated">
+    <div class="text-center">
+
+        <!-- Pretitle -->
+        <h6 class="mb-4 text-uppercase text-muted">
+            Success
+        </h6>
+
+        <!-- Title -->
+        <h1 class="mb-3 text-success">
+            Account has been created!
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="mb-5 text-muted">
+            {{ name || 'The instructor' }} has been emailed with a link to complete their registration.
+        </p>
+
+        <p *ngIf="url">
+            Alternatively, you can also send them this link to register: <br>
+            <a  href=""><code>{{ url }}</code></a>
+        </p>
+
+        <button class="btn btn-success btn-xl"> Go back to dashboard</button>
+
+    </div>
+
+</div>

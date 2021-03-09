@@ -14,6 +14,7 @@ export class TextComponent implements OnInit {
   @Input() placeholder: string;
   @Input() name: string;
   @Input() formGroup: FormGroup;
+  @Input() helper: string;
 
   constructor() { }
 

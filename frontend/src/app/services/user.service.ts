@@ -11,11 +11,18 @@ export class UserService {
 
 
     createNewUser(payload) {
-        return this.http.post(`${environment.baseURL}user/register`, payload);
+        return this.http.post(`${environment.baseURL}signup`, payload);
     }
+
+    createNewInstructor(payload) {
+        return this.http.post(`${environment.baseURL}signup-instructor`, payload);
+    }
+
     userLogin(payload) {
         return this.http.post(`${environment.baseURL}login`, payload);
     }
+
+
     getProtectedData() {
         return this.http.get(`${environment.baseURL}user/data`);
     }

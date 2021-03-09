@@ -83,7 +83,7 @@
             </div>
 
             <!-- Submit -->
-            <button  [disabled]="this.auth.registerForm.status != 'VALID'"
+            <button  [disabled]="this.auth.registerForm.invalid"
                      type="submit" class="btn btn-lg btn-block btn-primary mb-3">
                 Create Account
             </button>

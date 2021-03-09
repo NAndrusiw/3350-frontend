@@ -1,0 +1,111 @@
+<h1>Demo</h1>
+<div class="alert alert-primary">
+    Use this page for seeding (populating) the database for the demo. This includes seeding users (demo instructor, faculty, and department accounts), course information and more.
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-6 col-xl">
+
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Populate user accounts
+                        </h6>
+
+                        <div class="mt-4">
+                            <button (click)="addUserAccount('department')"  class="btn btn-light btn-block">+ Department Account</button>
+                            <button (click)="addUserAccount('faculty')" class="btn btn-light btn-block">+ Faculty Accounts</button>
+                            <button (click)="addUserAccount('instructor')"  class="btn btn-light btn-block">+ Instructor Account</button>
+                        </div>
+
+                        <div *ngIf="newAccountDetails" class="mt-3">
+
+                            <div class="card card-inactive">
+                                <div class="card-body p-3">
+                                    <small class="text-success">Account created!</small>
+                                    <h4> Account details</h4>
+                                    <pre class="mb-0">Name: {{ newAccountDetails.name  }}
+Email: {{  newAccountDetails.email }}
+Password: {{  newAccountDetails.password }}</pre>
+                                    <div (click)="newAccountDetails = null" class="btn btn-white btn-block btn-sm mt-3">Close</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-12 col-lg-6 col-xl">
+
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Populate courses
+                        </h6>
+
+                        <div class="mt-4">
+                            <button (click)="seedEnrolmentData()" class="btn btn-light btn-block">+ All courses and metadata</button>
+                            <button class="btn btn-light btn-block">+ Instructor Account</button>
+                            <button class="btn btn-light btn-block">+ Department Account</button>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+
+                        <!-- Icon -->
+                        <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+                    </div>
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-6 col-xl">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Database cleanup & maintenance
+                        </h6>
+
+                        <div class="mt-4">
+                            <button class="btn btn-light btn-block">— Reset JWT Token</button>
+                            <button class="btn btn-light btn-block">— Remove all instructor postings</button>
+                            <button class="btn btn-outline-danger btn-block">Clear database entirely</button>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+
+                        <!-- Icon -->
+                        <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+                    </div>
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-12">
+        <h3>Having issues?</h3>
+        <p class="mb-0">Don't forget to run <code>git pull</code> and <code>npm install</code> </p>
+        <p>The <code>main</code> branch's codebase should <b>always</b> be working and error-free, so you can also try to merge from the <code>main</code> branch as well. </p>
+    </div>
+</div>

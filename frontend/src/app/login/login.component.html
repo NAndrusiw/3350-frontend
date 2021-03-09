@@ -64,7 +64,7 @@
             </div>
 
             <!-- Submit -->
-            <button   [disabled]="this.auth.loginForm.status != 'VALID'" class="btn btn-lg btn-block btn-primary mb-3">
+            <button   [disabled]="this.auth.loginForm.invalid" class="btn btn-lg btn-block btn-primary mb-3">
                 Sign in
             </button>
 

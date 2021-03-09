@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { JwtModule } from "@auth0/angular-jwt";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,12 +15,14 @@ import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
 import { TestQuestionsComponent } from './test-questions/test-questions.component';
 import { QualificationsComponent } from './qualifications/qualifications.component';
 import { TextComponent } from './text/text.component';
+import { CoursesListComponent } from './instructor/courses-list/courses-list.component';
+import { InstructorDashboardComponent } from './instructor-dashboard/instructor-dashboard.component';
+import { DemoComponent } from './demo/demo.component';
+import { NewInstructorFormComponent } from './new-instructor-form/new-instructor-form.component';
 
-
-//
-// export function tokenGetter() {
-//   return localStorage.getItem("access_token");
-// }
+export function tokenGetter() {
+  return localStorage.getItem("Token");
+}
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { TextComponent } from './text/text.component';
     RegisterComponent,
     TestQuestionsComponent,
     QualificationsComponent,
-    TextComponent
+    TextComponent,
+    CoursesListComponent,
+    InstructorDashboardComponent,
+    DemoComponent,
+    NewInstructorFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +44,13 @@ import { TextComponent } from './text/text.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:3000"],
+        disallowedRoutes: ["localhost:3000/login", "localhost:3000/signup"],
+      },
+    }),
   ],
   providers: [
     // {

@@ -11,7 +11,7 @@
       <text-input [formGroup]="qualificationsForm" label="Other" placeholder="other requirement #1" name="requiredDescription" validate="true"></text-input>
 
 
-      <button [disabled]="qualificationsForm.status != 'VALID'" type="submit" class="btn btn-primary">Submit</button>
+      <button [disabled]="qualificationsForm.invalid" type="submit" class="btn btn-primary">Submit</button>
 
 
   </form>

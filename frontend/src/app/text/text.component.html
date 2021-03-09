@@ -1,7 +1,12 @@
 <div [formGroup]="formGroup" class="form-group"   [ngClass]="{
     'is-invalid': !formGroup.controls[name].valid && formGroup.controls[name].dirty
 }">
-  <label  class="form-label"><b>{{ label }}:</b></label>
+
+  <label  class="form-label">{{ label }}</label>
+    <small *ngIf="helper" class="form-text text-muted">
+        {{ helper }}
+    </small>
+
 <!--  <input  type="text" class="form-control" id="{{ name}}" placeholder="{{ placeholder }}">-->
   <input  [formControlName]="validate ? name : null" type="text" class="form-control" id="{{ name}}" placeholder="{{ placeholder ||label }}">
 

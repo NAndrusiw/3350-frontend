@@ -10,12 +10,4 @@
 
 <h1>Hello, {{ auth.getUserName() }}</h1>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-6"><button routerLink="qualifications" class="btn btn-block btn-info btn-lg">Instructor Postings</button></div>
-      <div class="col-md-6"><button routerLink="test-questions" class="btn btn-block btn-light btn-lg">Test Questions</button></div>
-
-    </div>
-  </div>
-</div>
+<app-instructor-dashboard [auth]="auth"></app-instructor-dashboard>

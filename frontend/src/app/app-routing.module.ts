@@ -6,11 +6,13 @@ import {RegisterComponent} from './register/register.component';
 import {QualificationsComponent} from './qualifications/qualifications.component';
 import {TestQuestionsComponent} from './test-questions/test-questions.component';
 import {AuthGuard} from './services/auth/auth.guard';
+import {DemoComponent} from './demo/demo.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent },
-  {path: 'register', component: RegisterComponent},
+  {path: 'demo', component: DemoComponent},
+  {path: 'activate-account', component: RegisterComponent},
   {path: 'qualifications', component: QualificationsComponent},
   {path: 'test-questions', component: TestQuestionsComponent},
 

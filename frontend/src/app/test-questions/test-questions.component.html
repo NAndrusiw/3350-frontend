@@ -12,7 +12,7 @@
       <text-input [formGroup]="testQuestionsForm" label="Question 3"  name="question3" validate="true"></text-input>
 
 
-      <button [disabled]="testQuestionsForm.status != 'VALID'" type="submit" class="btn btn-primary">Submit</button>
+      <button [disabled]="testQuestionsForm.invalid" type="submit" class="btn btn-primary">Submit</button>
 
 
     </form>

@@ -1,0 +1,52 @@
+<div id="courses" class="table-responsive ">
+<!--<div id="courses" class="table-responsive " data-list='{"valueNames": ["course", "totalSections", "instructors", "hours"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}'>-->
+
+    <div class="px-4 pb-2 w-50">
+
+            <input class="form-control-flush search form-control" type="search" placeholder="Search for a course...">
+
+    </div>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>
+                <a href="#" class="text-muted _course list-sort" data-sort="course">Course</a>
+            </th>
+            <th>
+                <a href="#" class="text-muted _totalSections list-sort" data-sort="totalSections">Total Sections</a>
+            </th>
+            <th>
+                <a href="#" class="text-muted _instructors list-sort" data-sort="instructors">Instructors</a>
+            </th>
+            <th class="text-right">
+                <a href="#" class="text-muted _hours list-sort" data-sort="hours">Hours</a>
+            </th>
+            <th class="text-right">
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody class="list">
+        <tr *ngFor="let course of pendingCourses">
+            <td class="course"><span class="font-weight-bold">{{ course.courseCode }}</span> - {{  course.courseName }}</td>
+            <td class="totalSections"><span class="badge badge-light"> <b>{{ course.totalSections }}</b> sections</span></td>
+            <td class="instructors">
+                <a href="">J. Carpio</a> •
+                <a href="">R. Rao</a>
+            </td>
+            <td class="text-right hours">
+                <span class="badge badge-soft-primary"><b>Lec: </b> {{ course.lecHours }} hrs</span><br> <span class="badge badge-soft-primary"><b>Labs/Tut:</b> {{ course.labHours }} hrs</span>
+            </td>
+            <td class="text-right">
+                <button class="btn btn-primary">
+                    Manage Course
+                </button>
+            </td>
+            <!--            <td class="tables-first">{{ course. }}</td>-->
+        </tr>
+        </tbody>
+    </table>
+    <script>
+
+    </script>
+</div>
