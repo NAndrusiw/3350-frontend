@@ -14,24 +14,25 @@ export class NewInstructorFormComponent implements OnInit {
     name: string;
     token: string;
     url: string;
+    uwoEmail: string;
 
     constructor(public auth: AuthService, public User: UserService) {
 
     }
 
     ngOnInit(): void {
+        this.accountCreated = false;
     }
 
     createAccount() {
 
-        const {name, email, username} = this.auth.instructorForm.value;
-
         this.User.createNewInstructor(this.auth.instructorForm.value)
             .subscribe(
                 (data: any) => {
-                    this.accountCreated = true
                     this.name = data.name;
+                    this.uwoEmail = data.username + '@uwo.ca';
                     this.url = window.location.origin + '/activate-account?token=' + data.token;
+                    this.accountCreated = true
                     this.auth.instructorForm.reset();
                 },
                 (err: HttpErrorResponse) => {

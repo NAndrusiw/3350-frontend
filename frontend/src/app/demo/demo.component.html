@@ -21,6 +21,8 @@
                             <button (click)="addUserAccount('department')"  class="btn btn-light btn-block">+ Department Account</button>
                             <button (click)="addUserAccount('faculty')" class="btn btn-light btn-block">+ Faculty Accounts</button>
                             <button (click)="addUserAccount('instructor')"  class="btn btn-light btn-block">+ Instructor Account</button>
+                            <hr>
+                            <button (click)="seedRandomInstructorAccounts()" class="btn btn-block btn-white">Link Random Instructors & Courses</button>
                         </div>
 
                         <div *ngIf="newAccountDetails" class="mt-3">
@@ -42,6 +44,7 @@ Password: {{  newAccountDetails.password }}</pre>
             </div>
         </div>
 
+
     </div>
 
     <div class="col-12 col-lg-6 col-xl">
@@ -54,13 +57,14 @@ Password: {{  newAccountDetails.password }}</pre>
 
                         <!-- Title -->
                         <h6 class="text-uppercase text-muted mb-2">
-                            Populate courses
+                            Populate courses & responses
                         </h6>
 
                         <div class="mt-4">
                             <button (click)="seedEnrolmentData()" class="btn btn-light btn-block">+ All courses and metadata</button>
-                            <button class="btn btn-light btn-block">+ Instructor Account</button>
-                            <button class="btn btn-light btn-block">+ Department Account</button>
+                        </div>
+                        <div class="mt-4">
+                            <button (click)="seedResponses()" class="btn btn-light btn-block">+ Seed all TA responses </button>
                         </div>
                     </div>
                     <div class="col-auto">

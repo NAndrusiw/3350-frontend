@@ -1,73 +1,39 @@
 <div class="row justify-content-center">
-    <div class="col-12 col-md-5 col-xl-4 my-5">
+
+
+    <div *ngIf="!invalidToken" class="col-12 col-md-5 col-xl-5 my-5">
 
         <!-- Heading -->
         <h1 class="display-4 text-center mb-3">
-            Create a New Account
+            Complete Registration
         </h1>
 
         <!-- Subheading -->
         <p class="text-muted text-center mb-5">
-            It'll only take seconds.
+            You're almost done, {{ user.name }}.
         </p>
+        <hr>
+        <p class="lead text-muted">
+            Your New Email: <strong class="ml-5">{{ user.username  + '@uwo.ca' }}</strong>
+        </p>
+        <small>You'll use this to login to this site.</small>
+        <hr class="mb-5">
 
 
-        <!-- Form -->
-        <form (ngSubmit)="register()" novalidate [formGroup]="this.auth.registerForm">
+        <form (ngSubmit)="register()" novalidate [formGroup]="this.auth.passwordForm">
 
-            <!-- Email address -->
             <div class="form-group">
 
-                <!-- Label -->
-                <label>Name</label>
-
-                <!-- Input -->
-                <input [ngClass]="{
-
-    'is-invalid': !formControls.displayName.valid && formControls.displayName.dirty
-}" type="text" formControlName="displayName" class="form-control" placeholder="Enter a name">
-                <div [hidden]="formControls.displayName.valid" class="invalid-feedback">
-                    Please enter your name.
-                </div>
-            </div>
+                <label>Choose a New Password</label>
 
 
-            <!-- Email address -->
-            <div class="form-group">
-
-                <!-- Label -->
-                <label>Email Address</label>
-
-                <!-- Input -->
-                <input [ngClass]="{
-    'is-invalid': !formControls.email.valid && formControls.email.dirty
-}" type="email" formControlName="email" class="form-control" placeholder="name@uwo.com">
-                <div [hidden]="formControls.email.valid" class="invalid-feedback">
-                    Please enter a valid email address.
-                </div>
-
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-
-
-                <!-- Label -->
-                <label>Password</label>
-
-
-                <!-- Input group -->
                 <div class="input-group input-group-merge">
-
-                    <!-- Input -->
 
                     <input [ngClass]="{
 
     'is-invalid': !formControls.password.valid && formControls.password.dirty
 }" formControlName="password"  type="password" class="form-control form-control-appended" placeholder="Choose a password">
 
-
-                    <!-- Icon -->
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fe fe-eye"></i>
@@ -82,24 +48,20 @@
 
             </div>
 
-            <!-- Submit -->
-            <button  [disabled]="this.auth.registerForm.invalid"
+            <button  [disabled]="this.auth.passwordForm.invalid"
                      type="submit" class="btn btn-lg btn-block btn-primary mb-3">
-                Create Account
+        Finish Registration
             </button>
-            <!--            <a class="btn btn-lg btn-block btn-primary mb-3">-->
-            <!--                Sign in-->
-            <!--            </a>-->
 
         </form>
 
-        <!-- Link -->
-        <div class="text-center">
-            <small class="text-muted text-center">
-                Already have an account? <a routerLink="/login">Sign in</a>.
-            </small>
-        </div>
-
 
     </div>
+
+    <div class="col-8" *ngIf="invalidToken">
+        <div class="alert alert-danger">
+            That token does not exist or has expired.
+        </div>
+    </div>
+
 </div>

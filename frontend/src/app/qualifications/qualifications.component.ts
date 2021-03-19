@@ -38,14 +38,14 @@ export class QualificationsComponent implements OnInit {
     qualifications.userId =
     qualifications.instructorName = this.auth.getUserName();
 
-    // alert(1);
+
     this.dataService.qualificationsData(qualifications).subscribe(
       (data: any) => {
         console.log(data);
 
         this.qualificationsForm.reset();
 
-        alert('Done, but not yet synced to db!');
+        alert('Done!');
       },
       (err: HttpErrorResponse) => {
 

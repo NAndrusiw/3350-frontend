@@ -1,0 +1,197 @@
+<div class="header">
+    <div class="header-body">
+        <div class="row align-items-end">
+            <div class="col">
+                <h6 class="header-pretitle">
+                    Viewing Course
+                </h6>
+                <!-- Title -->
+                <h1 class="header-title">
+                    {{ course.data.courseCode }} - {{ course.data.courseName }}
+                </h1>
+
+            </div>
+            <div *ngIf="auth.isDepartment()" class="col-auto">
+
+
+                <!-- Button -->
+                <a *ngIf="!this.requiresTa" (click)="toggleTaRequirement()" class="btn btn-primary lift">
+                    Requires TA
+                </a>
+
+                <a *ngIf="this.requiresTa" (click)="toggleTaRequirement()" class="btn btn-danger lift">
+                    Doesn't Require TA
+                </a>
+
+            </div>
+
+            <div *ngIf="auth.isInstructor()" class="col-auto">
+
+                <!-- Button -->
+                <h2 class="text-primary" *ngIf="this.requiresTa">
+                    <span class="badge badge-soft-primary">Requires TA</span>
+                </h2>
+
+            </div>
+        </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-6 col-xl">
+
+        <!-- Value  -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Total Sections
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 mb-0">
+                            {{ course.data.totalSections }}
+                        </span>
+                    </div>
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-6 col-xl">
+
+        <!-- Hours -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Lecture Hours
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 mb-0">
+                            {{ course.data.lecHours }}
+                        </span>
+                    </div>
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-lg-6 col-xl">
+
+        <!-- Hours -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                            Lab/Tut Hours
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 mb-0">
+                            {{ course.data.labHours }}
+                        </span>
+                    </div>
+                </div> <!-- / .row -->
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<h2>All Course Components</h2>
+
+<div class="card card-table mb-5">
+    <table class="table table-sm table-nowrap">
+        <thead>
+        <tr>
+            <th scope="col">Class #</th>
+            <th scope="col">Component</th>
+            <th scope="col">Section #</th>
+            <th scope="col">Start</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Class Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let enrolment of course.enrolments">
+            <th scope="row">{{ enrolment.classNumber }}</th>
+            <td><span class="badge badge-soft-primary">{{ enrolment.component }}</span></td>
+            <td>{{ enrolment.section }}</td>
+            <td>{{ enrolment.startDate | dateAgo }}</td>
+            <td>{{ enrolment.capEnrolment || '-' }}</td>
+            <td>{{ enrolment.percentFull.toFixed(2) }}% full</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div *ngIf="auth.isInstructor() && requiresTa">
+    <hr>
+
+    <h2>New TA Positions Available</h2>
+    <p>
+        Your department has specified that this course requires has open TA positions. Please set up a list of questions you'd like the TA to answer.
+    </p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <button (click)="openQualificationsForm  = !openQualificationsForm; openTestForm = false" class="btn btn-white btn-block btn-xl">Fill in Qualifications Form</button>
+        </div>
+        <div class="col-md-6">
+            <button (click)="openTestForm = !openTestForm; openQualificationsForm = false" class="btn btn-white btn-block btn-xl">Fill in Test Questions</button>
+        </div>
+    </div>
+
+    <div *ngIf="openQualificationsForm" class="card mt-3">
+        <div class="card-body">
+            <app-qualifications></app-qualifications>
+        </div>
+    </div>
+
+    <div *ngIf="openTestForm" class="card mt-3">
+        <div class="card-body">
+            <app-test-questions></app-test-questions>
+        </div>
+    </div>
+</div>
+<!--<h2>Course Instructors</h2>-->
+
+<!--<div class="card card-table">-->
+<!--    <table class="table table-sm table-nowrap">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th scope="col">Class #</th>-->
+<!--            <th scope="col">Component</th>-->
+<!--            <th scope="col">Section #</th>-->
+<!--            <th scope="col">Start</th>-->
+<!--            <th scope="col">Capacity</th>-->
+<!--            <th scope="col">Class Status</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr *ngFor="let enrolment of course.enrolments">-->
+<!--            <th scope="row">{{ enrolment.classNumber }}</th>-->
+<!--            <td><span class="badge badge-soft-primary">{{ enrolment.component }}</span></td>-->
+<!--            <td>{{ enrolment.section }}</td>-->
+<!--            <td>{{ enrolment.startDate | dateAgo }}</td>-->
+<!--            <td>{{ enrolment.capEnrolment || '-' }}</td>-->
+<!--            <td>{{ enrolment.percentFull.toFixed(2) }}% full</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--</div>-->

@@ -19,6 +19,12 @@ import { CoursesListComponent } from './instructor/courses-list/courses-list.com
 import { InstructorDashboardComponent } from './instructor-dashboard/instructor-dashboard.component';
 import { DemoComponent } from './demo/demo.component';
 import { NewInstructorFormComponent } from './new-instructor-form/new-instructor-form.component';
+import { BrowseAllCoursesComponent } from './browse-all-courses/browse-all-courses.component';
+import { AllInstructorsComponent } from './instructor/all-instructors/all-instructors.component';
+import { ViewCourseComponent } from './view-course/view-course.component';
+import { DateAgoPipe } from './date-ago.pipe';
+import { BrowseOpenTaPositionComponent } from './instructor/browse-open-ta-position/browse-open-ta-position.component';
+import { TaResponsesComponent } from './ta-responses/ta-responses.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -36,7 +42,13 @@ export function tokenGetter() {
     CoursesListComponent,
     InstructorDashboardComponent,
     DemoComponent,
-    NewInstructorFormComponent
+    NewInstructorFormComponent,
+    BrowseAllCoursesComponent,
+    AllInstructorsComponent,
+    ViewCourseComponent,
+    DateAgoPipe,
+    BrowseOpenTaPositionComponent,
+    TaResponsesComponent
   ],
   imports: [
     BrowserModule,

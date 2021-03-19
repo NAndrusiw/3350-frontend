@@ -1,0 +1,15 @@
+<div class="card mt-4">
+    <div class="card-header card-header-flush">
+        <h2 class="card-header-title">Browse New TA Postings</h2>
+    </div>
+    <div class="card-body">
+        <p class="lead text-muted">Your department has listed these courses requiring TAs.
+
+            <br> You'll need to determine the qualifications needed by each course that you'd like the TA(s) to answer.</p>
+
+    </div>
+
+    <div class="card-table body ">
+        <app-courses-list [courses]="coursesRequiringTa"></app-courses-list>
+    </div>
+</div>

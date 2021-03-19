@@ -26,8 +26,9 @@
             </th>
         </tr>
         </thead>
+
         <tbody class="list">
-        <tr *ngFor="let course of pendingCourses">
+        <tr *ngFor="let course of courses">
             <td class="course"><span class="font-weight-bold">{{ course.courseCode }}</span> - {{  course.courseName }}</td>
             <td class="totalSections"><span class="badge badge-light"> <b>{{ course.totalSections }}</b> sections</span></td>
             <td class="instructors">
@@ -38,7 +39,7 @@
                 <span class="badge badge-soft-primary"><b>Lec: </b> {{ course.lecHours }} hrs</span><br> <span class="badge badge-soft-primary"><b>Labs/Tut:</b> {{ course.labHours }} hrs</span>
             </td>
             <td class="text-right">
-                <button class="btn btn-primary">
+                <button routerLink="/courses/{{ course.courseCode }}" class="btn btn-primary">
                     Manage Course
                 </button>
             </td>

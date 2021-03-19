@@ -18,6 +18,7 @@ export class UserService {
         return this.http.post(`${environment.baseURL}signup-instructor`, payload);
     }
 
+
     userLogin(payload) {
         return this.http.post(`${environment.baseURL}login`, payload);
     }
@@ -25,5 +26,13 @@ export class UserService {
 
     getProtectedData() {
         return this.http.get(`${environment.baseURL}user/data`);
+    }
+
+    validateToken(token: string) {
+        return this.http.get(`${environment.baseURL}signup-instructor?token=` + token)
+    }
+
+    getInstructors() {
+        return this.http.get(`${environment.baseURL}users/instructors`)
     }
 }

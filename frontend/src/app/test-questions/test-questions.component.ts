@@ -13,10 +13,8 @@ import {environment} from '../../environments/environment';
 export class TestQuestionsComponent implements OnInit {
   testQuestionsForm = new FormGroup({
     courseCode: new FormControl('', Validators.required),
-    instructorName: new FormControl('', [Validators.required, Validators.email]),
-    question1: new FormControl('', Validators.required),
-    question2: new FormControl('', Validators.required),
-    question3: new FormControl('', Validators.required)
+    instructorName: new FormControl('', [Validators.required]),
+    questions: new FormControl('', Validators.required),
 
   });
   formControls = this.testQuestionsForm.controls;
@@ -29,16 +27,16 @@ export class TestQuestionsComponent implements OnInit {
 
     let questions = this.testQuestionsForm.value;
 
-
+    let payload = {}
 
     // alert(1);
-    this.dataService.qualificationsData(questions).subscribe(
+    this.dataService.questionsData(questions).subscribe(
       (data: any) => {
         console.log(data);
 
         this.testQuestionsForm.reset();
 
-        alert('Done, but not yet synced to db!');
+        alert('Saved!');
       },
       (err: HttpErrorResponse) => {
 

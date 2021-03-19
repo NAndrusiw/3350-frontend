@@ -1,61 +1,36 @@
 <div class="row">
     <div class="col-md-12">
-        <style>
-            .btn-xl {
-                font-size: 1.3em;
-                padding: 30px;
-            }
-
-        </style>
-
-        <div *ngIf="auth.isDepartment()"  class="row mb-5">
-
-            <div class="col-md-4">
-
-                <button routerLink="qualifications" class="btn btn-block  btn-xl btn-light btn-lg">Add a new instructor</button>
-
-            </div>
-
-            <div class="col-md-4">
-                <button routerLink="test-questions" class="btn btn-white btn-xl  btn-light btn-lg">
-                    Create a new TA Posting
-                </button>
-
-            </div>
-        </div>
-
-        <div class="col-md-8">
-
-        <app-new-instructor-form></app-new-instructor-form>
 
 
-        </div>
+        <div class="alert alert-light">Click the link on the sidebar to get started!</div>
+<!--        <div *ngIf="auth.isDepartment()"  class="row mb-5">-->
 
-        <div class="card mt-4">
-            <div class="card-header card-header-flush">
-                <h2 class="card-header-title">New TA Postings</h2>
-            </div>
-            <div class="card-body">
-                <p class="lead text-muted">Browse the courses and choose a course with open TA positions.</p>
+<!--            <div class="col-md-4">-->
 
-            </div>
-            <div class="card-table body ">
-                <app-courses-list [pendingCourses]="pendingCourses"></app-courses-list>
-            </div>
-        </div>
+<!--                <button routerLink="qualifications" class="btn btn-block  btn-xl btn-light btn-lg">Add a new instructor</button>-->
 
-        <div class="card ">
-            <div class="card-header card-header-flush">
-                <h2 class="card-header-title">All courses</h2>
-            </div>
-            <div class="card-table body ">
-                <!--                <app-courses-list [pendingCourses]="pendingCourses"></app-courses-list>-->
-            </div>
-        </div>
+<!--            </div>-->
+
+<!--            <div class="col-md-4">-->
+<!--                <button routerLink="test-questions" class="btn btn-white btn-xl  btn-light btn-lg">-->
+<!--                    Create a new TA Posting-->
+<!--                </button>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+
 
     </div>
-    <div *ngIf="auth.isInstructor()" class="col-md-3">
-        <button routerLink="qualifications" class="btn btn-block btn-info btn-lg">Instructor Postings</button>
-        <button routerLink="test-questions" class="btn btn-block btn-light btn-lg">Test Questions</button>
-    </div>
+<!--    <div *ngIf="auth.isInstructor()" class="col-md-3">-->
+<!--        <button routerLink="qualifications" class="btn btn-block btn-info btn-lg">Instructor Postings</button>-->
+<!--        <button routerLink="test-questions" class="btn btn-block btn-light btn-lg">Test Questions</button>-->
+<!--    </div>-->
 </div>
+<style>
+    .btn-xl {
+        font-size: 1.3em;
+        padding: 30px;
+    }
+
+</style>

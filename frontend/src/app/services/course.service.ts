@@ -7,9 +7,19 @@ import {environment} from '../../environments/environment';
 })
 export class CourseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   getCourses() {
     return this.http.get(`${environment.baseURL}courses`);
+  }
+
+  fetchCourse(id) {
+    return this.http.get(`${environment.baseURL}courses/${id}`);
+  }
+
+  updateCourse(id, payload) {
+    return this.http.patch(`${environment.baseURL}courses/${id}`, payload);
   }
 }

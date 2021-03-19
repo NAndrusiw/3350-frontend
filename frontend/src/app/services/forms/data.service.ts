@@ -11,7 +11,7 @@ constructor(private http: HttpClient) {}
 
   questionsData(questions)
   {
-    return this.http.post(`${environment.baseURL}api/questions`, questions);
+    return this.http.post(`${environment.baseURL}api/testQuestionsForm`, questions);
   }
 
   qualificationsData(qualifications)

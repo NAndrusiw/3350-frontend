@@ -8,7 +8,7 @@ import List from 'list.js';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-   @Input() pendingCourses: any;
+   @Input() courses: any;
 
   constructor() { }
 

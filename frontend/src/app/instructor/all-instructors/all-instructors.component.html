@@ -1,0 +1,40 @@
+<h1>All Instructors</h1>
+<div class="card">
+
+    <div class="card-body">
+
+        <div class="list-group list-group-flush my-n3" data-select2-id="16">
+            <div *ngFor="let instructor of allInstructors" class="list-group-item" data-select2-id="15">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <a class="avatar">
+                            <img src="https://st4.depositphotos.com/4329009/19956/v/600/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg" alt="..." class="avatar-img rounded-circle">
+                        </a>
+
+                    </div>
+                    <div class="col-5 ml-n2">
+
+                        <h4 class="mb-1">
+                            <a>{{ instructor.name}}</a>
+                        </h4>
+
+                        <p class="small text-muted mb-0">
+                            <a class="d-block text-reset text-truncate">{{ instructor.email }}</a>
+                        </p>
+
+                    </div>
+                    <div class="col-auto ml-auto mr-n3" data-select2-id="14">
+
+
+                        <button class="btn btn-light btn-sm">Edit</button>
+                    </div>
+
+                </div> <!-- / .row -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
