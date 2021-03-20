@@ -13,6 +13,7 @@ import {AllInstructorsComponent} from './instructor/all-instructors/all-instruct
 import {ViewCourseComponent} from './view-course/view-course.component';
 import {BrowseOpenTaPositionComponent} from './instructor/browse-open-ta-position/browse-open-ta-position.component';
 import {TaResponsesComponent} from './ta-responses/ta-responses.component';
+import {UploadTaResponsesComponent} from './department/upload-ta-responses/upload-ta-responses.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'courses/:courseId', component: ViewCourseComponent},
   {path: 'users/instructors', component: AllInstructorsComponent},
   {path: 'ta-responses', component: TaResponsesComponent},
+  {path: 'department/upload-responses', component: UploadTaResponsesComponent},
 
 
 ];

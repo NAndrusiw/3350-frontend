@@ -11,6 +11,10 @@ import { RegisterComponent } from './register/register.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+
+// import { DragDropModule }  from '@angular/cdk';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
 import { TestQuestionsComponent } from './test-questions/test-questions.component';
 import { QualificationsComponent } from './qualifications/qualifications.component';
@@ -25,6 +29,10 @@ import { ViewCourseComponent } from './view-course/view-course.component';
 import { DateAgoPipe } from './date-ago.pipe';
 import { BrowseOpenTaPositionComponent } from './instructor/browse-open-ta-position/browse-open-ta-position.component';
 import { TaResponsesComponent } from './ta-responses/ta-responses.component';
+import { UploadTaResponsesComponent } from './department/upload-ta-responses/upload-ta-responses.component';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { RankApplicantsComponent } from './instructor/rank-applicants/rank-applicants.component';
+import { TriggerRankAlgorithmComponent } from './department/trigger-rank-algorithm/trigger-rank-algorithm.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -48,7 +56,11 @@ export function tokenGetter() {
     ViewCourseComponent,
     DateAgoPipe,
     BrowseOpenTaPositionComponent,
-    TaResponsesComponent
+    TaResponsesComponent,
+    UploadTaResponsesComponent,
+      RankApplicantsComponent,
+      TriggerRankAlgorithmComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -56,6 +68,7 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragDropModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

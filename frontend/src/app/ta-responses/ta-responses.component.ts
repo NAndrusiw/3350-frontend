@@ -10,6 +10,8 @@ export class TaResponsesComponent implements OnInit {
 
      allResponses: any;
      allApplicants: any;
+     instructorRankings: any;
+     algorithmRankings: any;
 
     constructor(private responseService: ResponseService) {
 
@@ -17,6 +19,7 @@ export class TaResponsesComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadResponses();
+        this.loadInstructorRankings();
     }
 
 
@@ -25,8 +28,17 @@ export class TaResponsesComponent implements OnInit {
         this.allApplicants = this.allResponses.filter((v,i,a)=>a.findIndex(t=>(t.taName === v.taName))===i)
     });
 
+    loadInstructorRankings = () => this.responseService.getInstructorRankings().subscribe(res => {
+        this.instructorRankings = res;
+    });
+
     filterByRanking(): void {
 
     }
 
+    startRanking() {
+        this.responseService.getFinalRank().subscribe(res => {
+            this.algorithmRankings = res;
+        })
+    }
 }

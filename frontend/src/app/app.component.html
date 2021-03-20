@@ -36,6 +36,8 @@
             </h6>
 
             <ul class="navbar-nav">
+
+
                 <li class="nav-item">
                     <a routerLink="courses" class="nav-link">
                         <i class="fe fe-grid"></i> Browse All Courses
@@ -49,7 +51,7 @@
 
                 <li *ngIf="auth.isDepartment()" class="nav-item">
                     <a routerLink="ta-responses" class="nav-link">
-                        <i class="fe fe-grid"></i>View TA Responses
+                        <i class="fe fe-grid"></i>TA Matching
                     </a>
                 </li>
 
@@ -67,6 +69,13 @@
                         <i class="fe fe-grid"></i> Add New Instructor
                     </a>
                 </li>
+
+                <li *ngIf="auth.isDepartment()" class="nav-item">
+                    <a routerLink="department/upload-responses" class="nav-link">
+                        <i class="fe fe-grid"></i> Import TA Responses
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a routerLink="users/instructors" class="nav-link">
                         <i class="fe fe-grid"></i> View All Instructors

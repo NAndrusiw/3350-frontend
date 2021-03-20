@@ -1,0 +1,226 @@
+<h1>Import TA Responses</h1>
+
+<div class="row ">
+    <div class="col-12 col-md-9 col-lg-8 mb-5">
+        <div class="card card-fill">
+            <div class="card-body">
+
+                <!-- Heading -->
+                <h2 class="mb-2">
+                    Upload TA Responses spreadsheet
+                </h2>
+
+                <!-- Text -->
+                <p class="text-muted mb-5">
+                    Please upload a spreadsheet containing the TA responses. After uploading, you'll be able to see the imported responses.
+                </p>
+
+
+
+                <form class="text-center" method="post" enctype="multipart/form-data" [formGroup]="uploadForm" (ngSubmit)="onUpload()">
+
+                    <div class="form-group">
+                        <input
+                                formControlName="file"
+                                id="file"
+                                type="file"
+                                class="form-control"
+                                >
+<!--                                (change)="onFileChange($event)">-->
+                        <div *ngIf="formControls.file.touched && formControls.file.invalid" class="alert alert-danger">
+                            <div *ngIf="formControls.file.errors.required">Upload upload a file.</div>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-primary">
+                        Upload Excel File
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<h2 *ngIf="allResponses?.length > 0">All Imported Responses</h2>
+
+<div *ngIf="allResponses?.length  === 0" class="alert alert-light">
+    There are no TA responses uploaded.
+</div>
+
+<div *ngFor="let response of allResponses" >
+
+
+    <div class="card">
+        <div class="card-body">
+
+            <!-- List group -->
+            <div class="list-group list-group-flush my-n3">
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Course Code
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Text -->
+                            <a [routerLink]="['/courses/' + response.courseCode ]" class="text-muted">
+                                {{ response.courseCode }}
+                            </a>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Course Ranking
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Time -->
+                            <span class="text-muted">
+                                {{ response.courseRanking }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                TA Name
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Link -->
+                            <span class="text-muted">
+                                {{ response.taName }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Current Term
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Link -->
+                            <span class="text-muted">
+                                {{ response.inTerm }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Prior TA Experience
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <span class="text-muted">
+                                {{ response.priorTAExperience }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Attend UWO
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Link -->
+                            <span class="text-muted">
+                                {{ response.attendUWO }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Hours Available
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <span class="text-muted">
+                                {{ response.hoursAvailable }}
+                            </span>
+
+                        </div>
+                    </div>
+                </div> <!-- / .row -->
+
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <!-- Title -->
+                            <h5 class="mb-0">
+                                Answers
+                            </h5>
+
+                        </div>
+                        <div class="col-auto">
+
+                            <!-- Link -->
+                            <span class="text-muted">
+                                {{ response.answers }}
+                            </span>
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

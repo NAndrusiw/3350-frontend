@@ -111,6 +111,10 @@
 
 </div>
 
+
+        <app-rank-applicants *ngIf="auth.isInstructor() && requiresTa" [courseCode]="course.data.courseCode"></app-rank-applicants>
+
+
 <h2>All Course Components</h2>
 
 <div class="card card-table mb-5">
