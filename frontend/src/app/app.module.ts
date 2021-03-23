@@ -33,6 +33,8 @@ import { UploadTaResponsesComponent } from './department/upload-ta-responses/upl
 import { FileSelectDirective } from 'ng2-file-upload';
 import { RankApplicantsComponent } from './instructor/rank-applicants/rank-applicants.component';
 import { TriggerRankAlgorithmComponent } from './department/trigger-rank-algorithm/trigger-rank-algorithm.component';
+import { ExportQuestionsComponent } from './department/export-questions/export-questions.component';
+import { BeginQuestionProcessComponent } from './instructor/begin-question-process/begin-question-process.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -60,6 +62,8 @@ export function tokenGetter() {
     UploadTaResponsesComponent,
       RankApplicantsComponent,
       TriggerRankAlgorithmComponent,
+      ExportQuestionsComponent,
+      BeginQuestionProcessComponent,
 
   ],
   imports: [

@@ -1,6 +1,10 @@
 <div id="courses" class="table-responsive ">
 <!--<div id="courses" class="table-responsive " data-list='{"valueNames": ["course", "totalSections", "instructors", "hours"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}'>-->
 
+
+<!-- Modal -->
+
+
     <div class="px-4 pb-2 w-50">
 
             <input class="form-control-flush search form-control" type="search" placeholder="Search for a course...">
@@ -15,7 +19,7 @@
             <th>
                 <a href="#" class="text-muted _totalSections list-sort" data-sort="totalSections">Total Sections</a>
             </th>
-            <th>
+            <th class="text-center">
                 <a href="#" class="text-muted _instructors list-sort" data-sort="instructors">Instructors</a>
             </th>
             <th class="text-right">
@@ -31,23 +35,25 @@
         <tr *ngFor="let course of courses">
             <td class="course"><span class="font-weight-bold">{{ course.courseCode }}</span> - {{  course.courseName }}</td>
             <td class="totalSections"><span class="badge badge-light"> <b>{{ course.totalSections }}</b> sections</span></td>
-            <td class="instructors">
-                <a href="">J. Carpio</a> •
-                <a href="">R. Rao</a>
+            <td class="instructors text-center">
+                <span class="mb-5" *ngIf="course.instructors.length > 0">
+                    <span *ngFor="let instructor of course.instructors" class="badge badge-soft-primary font-weight-bold mr-1">{{ instructor.name }} </span>
+                    <br>
+                </span>
+
             </td>
             <td class="text-right hours">
-                <span class="badge badge-soft-primary"><b>Lec: </b> {{ course.lecHours }} hrs</span><br> <span class="badge badge-soft-primary"><b>Labs/Tut:</b> {{ course.labHours }} hrs</span>
+                <span class="badge badge-soft-info"><b>Lec: </b> {{ course.lecHours }} hrs</span><br> <span class="badge badge-soft-info"><b>Labs/Tut:</b> {{ course.labHours }} hrs</span>
             </td>
             <td class="text-right">
-                <button routerLink="/courses/{{ course.courseCode }}" class="btn btn-primary">
-                    Manage Course
+                <button *ngIf="showManageCourse" routerLink="/courses/{{ course.courseCode }}" class="btn btn-light">
+                    View <i class="fe fe-arrow-right"></i>
                 </button>
             </td>
             <!--            <td class="tables-first">{{ course. }}</td>-->
         </tr>
         </tbody>
     </table>
-    <script>
 
-    </script>
 </div>
+

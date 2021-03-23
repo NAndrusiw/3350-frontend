@@ -19,4 +19,14 @@ constructor(private http: HttpClient) {}
     return this.http.post(`${environment.baseURL}api/qualificationsForm`, qualifications);
   }
 
+  getQuestions(courseCode) {
+    return this.http.get(`${environment.baseURL}api/qualificationsForm/` + courseCode);
+  }
+
+   getQualifications() {
+    return this.http.get(`${environment.baseURL}api/qualificationsForm`);
+  }
+
+
+
 }

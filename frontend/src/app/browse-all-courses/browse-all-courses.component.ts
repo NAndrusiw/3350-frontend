@@ -19,7 +19,6 @@ export class BrowseAllCoursesComponent implements OnInit {
 
     this.loadCourses();
     //
-
   }
 
 

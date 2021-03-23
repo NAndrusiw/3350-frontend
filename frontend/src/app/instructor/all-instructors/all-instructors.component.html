@@ -1,10 +1,12 @@
-<h1>All Instructors</h1>
-<div class="card">
+<!--<h1>All Instructors</h1>-->
+<div class="card mb-0">
 
     <div class="card-body">
 
-        <div class="list-group list-group-flush my-n3" data-select2-id="16">
-            <div *ngFor="let instructor of allInstructors" class="list-group-item" data-select2-id="15">
+
+        <div class="list-group list-group-flush my-n3" >
+            <div *ngFor="let instructor of filteredInstructors" class="list-group-item">
+
                 <div class="row align-items-center">
                     <div class="col-auto">
 
@@ -16,8 +18,9 @@
                     </div>
                     <div class="col-5 ml-n2">
 
+
                         <h4 class="mb-1">
-                            <a>{{ instructor.name}}</a>
+                            <a>{{ instructor.name}}</a> <span *ngIf="instructor.email === auth.getEmail()" class="badge badge-soft-primary text-uppercase font-weight-bold ml-3">you</span>
                         </h4>
 
                         <p class="small text-muted mb-0">
@@ -25,10 +28,9 @@
                         </p>
 
                     </div>
-                    <div class="col-auto ml-auto mr-n3" data-select2-id="14">
-
-
-                        <button class="btn btn-light btn-sm">Edit</button>
+                    <div class="col-auto ml-auto mr-n3" *ngIf="selectedCourse && auth.isDepartment()" data-select2-id="14">
+                        <button *ngIf="courseCanBeAssigned(instructor)" (click)="addInstructorToCourse(instructor)" class="btn btn-success btn-sm"><i class="fe fe-plus"></i> Assign to this course</button>
+                        <button *ngIf="!courseCanBeAssigned(instructor)"  (click)="removeInstructorFromCourse(instructor)" class="btn btn-danger btn-sm"><i class="fe fe-minus"></i> Remove from this course</button>
                     </div>
 
                 </div> <!-- / .row -->

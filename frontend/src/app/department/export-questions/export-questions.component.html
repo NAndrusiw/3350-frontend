@@ -1,0 +1,45 @@
+<h1>Export Instructor Questions</h1>
+<p>You are able to download an excel file of all courses and their respective qualifications and questions that the instructor has set.</p>
+
+
+
+
+<div id="courses" class="table-responsive ">
+
+
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>
+                <a href="#" class="text-muted">Instructor</a>
+            </th>
+            <th>
+                <a href="#" class="text-muted">Questions</a>
+            </th>
+            <th class="text-center">
+                <a href="#" class="text-muted">Qualifications</a>
+            </th>
+            <th class="text-right">
+                Date added
+            </th>
+        </tr>
+        </thead>
+
+        <tbody class="list">
+        <tr *ngFor="let question of allQuestions">
+            <td>
+                {{ question.instructorName }}
+            </td>
+
+            <td>{{ question.questions }}</td>
+
+            <td class="text-right">
+                {{ question.createdAt | dateAgo }}
+            </td>
+            <!--            <td class="tables-first">{{ course. }}</td>-->
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+

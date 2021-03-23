@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import List from 'list.js';
+import {CourseService} from '../../services/course.service';
+declare var $: any;
 
 
 @Component({
@@ -10,7 +12,12 @@ import List from 'list.js';
 export class CoursesListComponent implements OnInit {
    @Input() courses: any;
 
-  constructor() { }
+   @Input() showManageCourse: boolean = true;
+   @Input() showAssignToInstructor: boolean = true;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     setTimeout(function() {
@@ -30,5 +37,6 @@ export class CoursesListComponent implements OnInit {
       // alert(23);
     }, 1000);
   }
+
 
 }

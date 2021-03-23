@@ -15,6 +15,7 @@ export class ViewCourseComponent implements OnInit {
   requiresTa: boolean;
   openQualificationsForm: boolean = false;
   openTestForm: boolean = false;
+  linkInstructorsExpanded: boolean = false;
 
   constructor(public courseService: CourseService, private route: ActivatedRoute, public auth: AuthService) {
     this.route.params.subscribe(params=> {
@@ -30,7 +31,6 @@ export class ViewCourseComponent implements OnInit {
   fetchCourse = () => this.courseService.fetchCourse(this.courseId).subscribe(res => {
     this.course = res;
     this.requiresTa = this.course.data.requiresTa;
-    console.log(res);
   })
 
   toggleTaRequirement(): void {
@@ -41,6 +41,19 @@ export class ViewCourseComponent implements OnInit {
       this.course = res;
       this.requiresTa = this.course.data.requiresTa;
     })
+  }
+
+
+  getComponentColor(component: string) {
+    switch (component.toUpperCase()) {
+      case 'LEC':
+        return 'badge-soft-info';
+      case 'LAB':
+        return 'badge-soft-warning';
+      case 'TUT':
+        return 'badge-soft-danger';
+    }
+    return 'badge-soft-info'
   }
 
 }

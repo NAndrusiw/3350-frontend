@@ -54,8 +54,16 @@ export class AuthService {
         return JSON.parse(localStorage.getItem('User'));
     }
 
+    getId() {
+        return this.getUser().data._id;
+    }
+
     getUserName() {
         return this.getUser().data.name;
+    }
+
+    getEmail() {
+        return this.getUser().data.email;
     }
 
     isInstructor() {

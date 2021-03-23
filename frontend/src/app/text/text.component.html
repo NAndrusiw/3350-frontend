@@ -8,7 +8,7 @@
     </small>
 
 <!--  <input  type="text" class="form-control" id="{{ name}}" placeholder="{{ placeholder }}">-->
-  <input  [formControlName]="validate ? name : null" type="text" class="form-control" id="{{ name}}" placeholder="{{ placeholder ||label }}">
+  <input  [formControlName]="validate ? name : null" type="text" class="form-control" id="{{ name}}" placeholder="{{ placeholder }}">
 
   <div [hidden]="formGroup.controls[name].valid" class="invalid-feedback">
      This is invalid.

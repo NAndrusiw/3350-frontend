@@ -1,0 +1,71 @@
+<h2 class="text-primary">New TA Positions Available!</h2>
+<div *ngIf="currentStep === 1">
+    <div class="alert alert-light">
+        Your department has specified that this course requires has open TA positions. <br> Please set up a list of questions you'd like applicants to answer.
+    </div>
+
+    <button (click)="currentStep = 2" class="btn btn-primary">Begin Process <i class="fe fe-arrow-right"></i></button>
+
+</div>
+<div *ngIf="currentStep === 3">
+    <p class="lead text-success">
+        <i class="fe fe-check-circle mr-3"></i> <strong>Applicant Questionnaire successfully submitted.</strong> Awaiting applicant responses.
+                                                                                                                 <!--        <button class="btn btn-sm btn-white ml-3">View Submitted Questionnaire</button>-->
+    </p>
+</div>
+
+
+<div class="animate__animated animate__fadeIn" *ngIf="currentStep === 2">
+    <form (ngSubmit)="submitForm()" [formGroup]="instructorQuestionsForm">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="degree">Degree/Field of study</label> <input formControlName="degree" [ngClass]="{ 'is-invalid':  !instructorQuestionsForm.controls.degree.valid && instructorQuestionsForm.controls.degree.dirty }" type="text" placeholder="eg. Software Engineering" id="degree" class="form-control">
+                <div [hidden]="instructorQuestionsForm.controls.degree.valid" class="invalid-feedback">
+                    Please enter a valid response.
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="requiredTAHours">Required Weekly Hours of Applicant</label> <input placeholder="eg. 30" type="text"  [ngClass]="{ 'is-invalid':  !instructorQuestionsForm.controls.requiredTAHours.valid && instructorQuestionsForm.controls.requiredTAHours.dirty }" formControlName="requiredTAHours" id="requiredTAHours" class="form-control">
+                <div [hidden]="instructorQuestionsForm.controls.requiredTAHours.valid" class="invalid-feedback">
+                    Please enter a valid number of hours.
+                </div>
+            </div>
+
+            <div class="form-group col-md-8">
+                <label for="requiredDescription">Mandatory Qualifications</label> <textarea
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid':  !instructorQuestionsForm.controls.requiredDescription.valid && instructorQuestionsForm.controls.requiredDescription.dirty }"
+                    placeholder="Any other requirements / qualifications / experience for the applicant"
+                    rows="3"
+                    formControlName="requiredDescription"
+                    id="requiredDescription"></textarea>
+                <div [hidden]="instructorQuestionsForm.controls.requiredTAHours.valid" class="invalid-feedback">
+                    Please enter mandatory qualifications / requirements for the applications.
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <strong>Your Custom Questions</strong><br> <span class="text-muted">Please list some questions below to ask the applicant.</span>
+            </div>
+
+            <div class="form-group col-md-7 mb-2" *ngFor="let ticket of t.controls; let i = index">
+                <div [formGroup]="ticket">
+                    <input formControlName="question" [ngClass]="{'is-invalid': !ticket.controls.question.valid && ticket.controls.question.dirty }" type="text" class="form-control" placeholder="Enter Question #{{ i+1 }}">
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <button *ngIf="t.controls.length > 1" class="btn btn-light mr-2" (click)="removeLastItem()"><i class="fe fe-minus"></i> Remove</button>
+                <button class="btn btn-white" [disabled]="!instructorQuestionsForm.controls.questions.valid " (click)="addItem()"><i class="fe fe-plus"></i> Add Question</button>
+            </div>
+
+
+            <div class="col-md-12 mt-3">
+                <button [disabled]="instructorQuestionsForm.invalid"  type="submit" class="btn btn-primary mr-2"><i class="fe fe-check"></i> Submit Applicant Questionnaire</button>
+                <button (click)="currentStep = 1" class="btn btn-white"><i class="fe fe-rotate-ccw"></i> Cancel</button>
+            </div>
+
+        </div>
+    </form>
+</div>
