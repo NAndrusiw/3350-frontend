@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {ResponseService} from '../../services/response.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-rank-applicants',
@@ -11,25 +11,22 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class RankApplicantsComponent implements OnInit {
 
     // @Output('cdkDropDropped')
+    editing: boolean = false;
     @Input() courseCode: string;
+    @Input() originalQuestions: any;
     public allResponses;
+    public rankedResponses;
 
-    movies = [
-        'Episode I - The Phantom Menace',
-        'Episode II - Attack of the Clones',
-        'Episode III - Revenge of the Sith',
-        'Episode IV - A New Hope',
-        'Episode V - The Empire Strikes Back',
-        'Episode VI - Return of the Jedi',
-        'Episode VII - The Force Awakens',
-        'Episode VIII - The Last Jedi'
-    ];
 
     drop(event: CdkDragDrop<string[]>) {
-        moveItemInArray(this.allResponses, event.previousIndex, event.currentIndex);
+        moveItemInArray(this.rankedResponses, event.previousIndex, event.currentIndex);
     }
 
 
+    resetRank() {
+        this.editing = false;
+        this.loadResponses();
+    }
 
     constructor(public responseService: ResponseService) {
     }
@@ -43,27 +40,28 @@ export class RankApplicantsComponent implements OnInit {
         this.allResponses = this.allResponses.filter(item => {
             return item.courseCode === this.courseCode;
         });
+        this.rankedResponses = this.allResponses;
         // this.allApplicants = this.allResponses.filter((v,i,a)=>a.findIndex(t=>(t.taName === v.taName))===i)
     });
 
+
     saveRankings() {
 
-        let taNames = this.allResponses.map(item => {
-            return item.taName;
-        })
+        let taEmails = this.allResponses.map(item => {
+            return item.applicantEmail;
+        });
 
 
         this.responseService.saveRankings({
             courseCode: this.courseCode,
-            taName: taNames,
+            taEmails: taEmails,
         }).subscribe(
             (data: any) => {
-                console.log(data);
-                alert('Done!');
+                this.editing = false;
             },
             (err: HttpErrorResponse) => {
 
-                window.alert(err.error)
+                window.alert(err.error);
             }
         );
 

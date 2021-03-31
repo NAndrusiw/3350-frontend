@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {AuthService} from '../../services/auth/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../services/forms/data.service';
+import {ResponseService} from '../../services/response.service';
 
 @Component({
     selector: 'app-begin-question-process',
@@ -19,8 +20,10 @@ export class BeginQuestionProcessComponent implements OnInit {
 
     qualifications: any;
     alreadyCreated = false;
+    allResponses: any;
+    instructorQuestionRecord: any;
 
-    constructor( private formBuilder: FormBuilder, public auth: AuthService, public dataService: DataService) {
+    constructor( private formBuilder: FormBuilder, public auth: AuthService, public dataService: DataService, public responseService: ResponseService) {
         // this.questions = new Array(4);
     }
 
@@ -36,6 +39,7 @@ export class BeginQuestionProcessComponent implements OnInit {
         });
 
         this.getTa();
+        this.loadResponses();
         this.addItem();
     }
 
@@ -79,17 +83,33 @@ export class BeginQuestionProcessComponent implements OnInit {
         this.dataService.getQuestions(this.courseCode).subscribe(res => {
             this.qualifications = res;
 
-            this.alreadyCreated = this.qualifications.filter(item => {
+            let instructorQuestionRecord = this.qualifications.filter(item => {
                 return item.instructor_id === this.auth.getId();
-            }).length > 0
+            });
+
+            this.alreadyCreated = instructorQuestionRecord.length > 0
 
             if (this.alreadyCreated) {
+                this.instructorQuestionRecord = instructorQuestionRecord;
                 this.currentStep = 3;
             } else {
                 this.currentStep = 1;
             }
         })
     }
+
+    loadResponses = () => this.responseService.getResponses().subscribe(res => {
+        this.allResponses = res;
+        this.allResponses = this.allResponses.filter(item => {
+            return item.courseCode === this.courseCode;
+        });
+
+        if (this.allResponses.length > 0) {
+            return this.currentStep = 4;
+        }
+        // this.allApplicants = this.allResponses.filter((v,i,a)=>a.findIndex(t=>(t.taName === v.taName))===i)
+    });
+
     // addQuestion() {
     //     this.questions.push();
     // }

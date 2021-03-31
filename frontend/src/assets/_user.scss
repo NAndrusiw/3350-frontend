@@ -28,9 +28,8 @@
 
 
 .example-list {
-  width: 500px;
+  width: 100%;
   max-width: 100%;
-  border: solid 1px #ccc;
   min-height: 60px;
   display: block;
   background: white;
@@ -39,29 +38,29 @@
 }
 
 .example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  //padding: 20px 10px;
+  //border-bottom: solid 1px #f1f5fb;
+  //color: rgba(0, 0, 0, 0.87);
+  //display: flex;
+  //flex-direction: row;
+  //align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
+  //box-sizing: border-box;
   cursor: move;
-  background: white;
-  font-size: 14px;
+  //background: white;
+  //font-size: 14px;
 }
 
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 5px 5px -3px #f9fbfd,
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 100ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .example-box:last-child {
@@ -73,8 +72,8 @@
 }
 
 .example-custom-placeholder {
-  background: #ccc;
-  border: dotted 3px #999;
-  min-height: 60px;
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  background: #f9fbfd;
+  border: dotted 3px #c7d3e2;
+  min-height: 108px;
+  transition: transform 50ms cubic-bezier(0, 0, 0.2, 1);
 }

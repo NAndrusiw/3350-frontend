@@ -15,6 +15,8 @@ import {BrowseOpenTaPositionComponent} from './instructor/browse-open-ta-positio
 import {TaResponsesComponent} from './ta-responses/ta-responses.component';
 import {UploadTaResponsesComponent} from './department/upload-ta-responses/upload-ta-responses.component';
 import {ExportQuestionsComponent} from './department/export-questions/export-questions.component';
+import {ImportEnrollmentDataComponent} from './department/import-enrollment-data/import-enrollment-data.component';
+import {ViewAllInstructorsComponent} from './instructors/view-all-instructors/view-all-instructors.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -27,9 +29,10 @@ const routes: Routes = [
   {path: 'courses', component: BrowseAllCoursesComponent},
   {path: 'courses-open', component: BrowseOpenTaPositionComponent},
   {path: 'courses/:courseId', component: ViewCourseComponent},
-  {path: 'users/instructors', component: AllInstructorsComponent},
+  {path: 'users/instructors', component: ViewAllInstructorsComponent},
   {path: 'ta-responses', component: TaResponsesComponent},
   {path: 'department/upload-responses', component: UploadTaResponsesComponent},
+  {path: 'department/upload-enrollment', component: ImportEnrollmentDataComponent},
   {path: 'department/export-questions', component: ExportQuestionsComponent},
 
 

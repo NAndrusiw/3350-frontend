@@ -1,0 +1,80 @@
+<h1>Import Enrollment Information</h1>
+
+<div class="row ">
+    <div class="col-12 col-md-9 col-lg-8 mb-5">
+        <div class="card card-fill">
+            <div class="card-body">
+
+                <!-- Text -->
+                <p class="text-muted mb-5">
+                    Please upload a spreadsheet containing the the course code, class hours, previous TA hours, and the current enrollments.
+                </p>
+
+                <p *ngIf="successUpload" class="lead text-success font-weight-bold">
+                    <i class="fe fe-check"></i> Enrollments have successfully been imported!
+                </p>
+
+                <div *ngIf="!successUpload">
+                    <input
+                            type="file" class="d-none"
+                            (change)="onFileSelected($event)" #fileUpload>
+
+                    <div class="file-upload">
+
+                        <p *ngIf="fileName">{{ fileName }}</p>
+
+                        <button
+                                class="btn btn-white"
+                                (click)="fileUpload.click()">
+                            <i class="fe fe-upload"></i> Click to choose excel file
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<h2 *ngIf="allEnrollments?.length > 0">Imported Enrollments</h2>
+
+<div *ngIf="allEnrollments?.length > 0" class="card card-table mb-5">
+    <form>
+    <table class="table table-sm table-nowrap">
+        <thead>
+        <tr>
+            <th class="text-left" scope="col">Course</th>
+            <th scope="col">Lab/Tutorial Hours</th>
+            <th>Current Enrollment</th>
+            <th>Previous Enrollment</th>
+            <th>Previous TA Hours</th>
+            <th width="25%" class="font-weight-bolder text-right">Calculated Hours (
+                <a (click)="override = !override" href="javascript:;"><i class="fe {{ override ? 'fe-x' : 'fe-edit-2' }}"></i> {{ !override ? 'override' : 'cancel' }}</a>
+                <span *ngIf="override"> ·
+                    <a href="javascript:;" (click)="updateHours()" class="text-success"><i class="fe fe-check"></i> Update</a>
+                </span> )
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let enrolment of allEnrollments; let i = index">
+            <th scope="row">{{ enrolment.courseCode }} </th>
+            <td>{{ enrolment.hours }}</td>
+            <td>{{ enrolment.currentEnrollment }}</td>
+            <td>{{ enrolment.prevEnrollment }}</td>
+            <td>{{ enrolment.prevTAHours }}</td>
+            <td [formGroup]="this.taHourFrom.controls.taHourInputs.controls[i]" class="text-primary font-weight-bold text-right">
+
+                <input *ngIf="override" type="text" formControlName="hours" [ngClass]="{'is-invalid': !this.taHourFrom.controls.taHourInputs.controls[i].valid && this.taHourFrom.controls.taHourInputs.controls[i].dirty, 'is-valid': this.taHourFrom.controls.taHourInputs.controls[i].valid && this.taHourFrom.controls.taHourInputs.controls[i].dirty }" placeholder="Enter Hours" class="form-control text-right float-right w-75 form-control-sm">
+<!--                <input *ngIf="override" [value]="enrolment.totalTaHours || ''" type="text"  placeholder="Enter Hours" class="form-control form-control-sm">-->
+
+                <span *ngIf="!override">{{ enrolment.totalTaHours }}</span>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+</div>

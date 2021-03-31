@@ -1,45 +1,53 @@
 <h1>Export Instructor Questions</h1>
-<p>You are able to download an excel file of all courses and their respective qualifications and questions that the instructor has set.</p>
+<p>You are able to <strong>
+    <a href="javascript:;" (click)="downloadExcel()">download an excel file</a>
+</strong> of all courses and their respective qualifications and questions that the instructor has set.
+</p>
 
+<div class="alert alert-light">
+    <i class="fe fe-info"></i> <strong> New Beta Feature!</strong>  You're now able to share the instructors' questions to applicants via a link. Their responses will be saved automatically.
+</div>
 
+<div class="card card-table">
+    <div id="courses" class="table-responsive ">
 
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>Instructor</th>
+                <th>Questions</th>
+                <th>Required Qualifications</th>
+                <th>Required TA Hours</th>
+                <th>added</th>
+                <th class="text-right">Share</th>
+            </tr>
+            </thead>
 
-<div id="courses" class="table-responsive ">
+            <tbody class="list">
+            <tr *ngFor="let question of allQuestions">
+                <td>{{ question.instructor_id.name }}</td>
 
+                <td>
+                    <ol *ngIf="question?.questions?.length > 0">
+                        <li *ngFor="let q of question.questions">{{ q.question }}
+                        </li>
+                    </ol>
 
-    <table class="table table-sm">
-        <thead>
-        <tr>
-            <th>
-                <a href="#" class="text-muted">Instructor</a>
-            </th>
-            <th>
-                <a href="#" class="text-muted">Questions</a>
-            </th>
-            <th class="text-center">
-                <a href="#" class="text-muted">Qualifications</a>
-            </th>
-            <th class="text-right">
-                Date added
-            </th>
-        </tr>
-        </thead>
+                </td>
 
-        <tbody class="list">
-        <tr *ngFor="let question of allQuestions">
-            <td>
-                {{ question.instructorName }}
-            </td>
+                <td>{{ question.requiredDescription }}</td>
+                <td>{{ question.requiredTAHours }} hours</td>
+                <td>{{ question.createdAt | dateAgo }}</td>
+                <td class="text-right text-nowrap">
 
-            <td>{{ question.questions }}</td>
+                    <button  data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." class="btn btn-sm btn-white">
+                        <i class="fe fe-share"></i> Get Link
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-            <td class="text-right">
-                {{ question.createdAt | dateAgo }}
-            </td>
-            <!--            <td class="tables-first">{{ course. }}</td>-->
-        </tr>
-        </tbody>
-    </table>
-
+    </div>
 </div>
 

@@ -9,16 +9,16 @@ import {CourseService} from '../services/course.service';
 export class BrowseAllCoursesComponent implements OnInit {
 
   public allCourses: any;
+  public fileName: string;
 
   constructor(public courseService: CourseService) {
-    // console.log(this.courseService.getCourses());
 
   }
 
   ngOnInit(): void {
 
     this.loadCourses();
-    //
+
   }
 
 
@@ -26,4 +26,15 @@ export class BrowseAllCoursesComponent implements OnInit {
     this.allCourses = res;
   })
 
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append('file', file);
+      this.courseService.uploadCourses(formData).subscribe(res => {
+        this.loadCourses();
+      });
+    }
+  }
 }

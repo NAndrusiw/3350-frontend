@@ -1,32 +1,34 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
 
-constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
-  questionsData(questions)
-  {
-    return this.http.post(`${environment.baseURL}api/testQuestionsForm`, questions);
-  }
+    questionsData(questions) {
+        return this.http.post(`${environment.baseURL}api/testQuestionsForm`, questions);
+    }
 
-  qualificationsData(qualifications)
-  {
-    return this.http.post(`${environment.baseURL}api/qualificationsForm`, qualifications);
-  }
+    qualificationsData(qualifications) {
+        return this.http.post(`${environment.baseURL}api/qualificationsForm`, qualifications);
+    }
 
-  getQuestions(courseCode) {
-    return this.http.get(`${environment.baseURL}api/qualificationsForm/` + courseCode);
-  }
+    getQuestions(courseCode) {
+        return this.http.get(`${environment.baseURL}api/qualificationsForm/` + courseCode);
+    }
 
-   getQualifications() {
-    return this.http.get(`${environment.baseURL}api/qualificationsForm`);
-  }
+    getQualifications() {
+        return this.http.get(`${environment.baseURL}api/qualificationsForm`);
+    }
 
+    exportQuestionsUrl() : string {
+        return `${environment.baseURL}api/export/qualifications`;
+    }
 
 
 }

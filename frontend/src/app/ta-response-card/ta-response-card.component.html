@@ -1,0 +1,142 @@
+<div [class.mb-0]="noBottomPadding" class="card">
+    <div class="card-body">
+
+        <!-- Header -->
+        <div class="mb-3">
+            <div class="row align-items-center">
+                <div class="col-auto">
+
+                    <!-- Avatar -->
+                    <a href="#!" class="avatar">
+                        <img src="https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/sumo/img/default-FFA-avatar.png" alt="..." class="avatar-img rounded-circle">
+                    </a>
+
+                </div>
+                <div class="col ml-n2">
+
+                    <!-- Title -->
+                    <h3 class="mb-1">
+                        {{ response.taName }}
+                    </h3>
+
+                    <!-- Time -->
+                    <p class="card-text small text-muted">
+                        {{ response.applicantEmail }} <span class="text-muted"></span> · <span class="badge badge-soft-primary text-uppercase">{{ getApplicantStatus(response.applicantStatus) }}</span>
+                    </p>
+
+                </div>
+                <div class="col-auto">
+
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#!" class="dropdown-item">
+                                Express Concern
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <!-- / .row -->
+        </div>
+
+        <div *ngIf="!compactMode" class="row">
+            <div class="col-12 col-lg-6 col-xl">
+                <div class="card bg-lighter">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h5 class="text-uppercase text-muted mb-2">
+                                    Course
+                                </h5>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0"> {{ response.courseCode }}
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+                                <!-- Icon -->
+                                <span class="h2 fe fe-book text-muted mb-0"></span>
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl">
+                <div class="card bg-lighter">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h5 class="text-uppercase text-muted mb-2">
+                                    Applicant Course Ranking
+                                </h5>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0"> #{{ response.courseRanking }}
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+                                <!-- Icon -->
+                                <span class="h2 fe fe-trending-up text-muted mb-0"></span>
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl">
+                <div class="card bg-lighter">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h5 class="text-uppercase text-muted mb-2">
+                                    Hours Available
+                                </h5>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0">
+                                    {{ response.hoursAvailable }}
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+                                <!-- Icon -->
+                                <span class="h2 fe fe-clock text-muted mb-0"></span>
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!compactMode">
+            <h3 class="text-muted">Answers to Questions</h3>
+            <!-- List -->
+            <ol *ngIf="originalQuestions" class="mb-3">
+                <li *ngFor="let question of originalQuestions.questions; let i = index">
+                    <b>Q:</b> {{ question.question }} <br>
+                  <b>A:</b>  {{ response['a' + (i + 1)] }}
+                </li>
+            </ol>
+            <ol *ngIf="!originalQuestions" class="mb-3">
+                <li>{{ response.a1 }}</li>
+                <li>{{ response.a2 }}</li>
+            </ol>
+        </div>
+    </div>
+</div>

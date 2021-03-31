@@ -30,11 +30,13 @@ import { DateAgoPipe } from './date-ago.pipe';
 import { BrowseOpenTaPositionComponent } from './instructor/browse-open-ta-position/browse-open-ta-position.component';
 import { TaResponsesComponent } from './ta-responses/ta-responses.component';
 import { UploadTaResponsesComponent } from './department/upload-ta-responses/upload-ta-responses.component';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { RankApplicantsComponent } from './instructor/rank-applicants/rank-applicants.component';
 import { TriggerRankAlgorithmComponent } from './department/trigger-rank-algorithm/trigger-rank-algorithm.component';
 import { ExportQuestionsComponent } from './department/export-questions/export-questions.component';
 import { BeginQuestionProcessComponent } from './instructor/begin-question-process/begin-question-process.component';
+import { TaResponseCardComponent } from './ta-response-card/ta-response-card.component';
+import { ImportEnrollmentDataComponent } from './department/import-enrollment-data/import-enrollment-data.component';
+import { ViewAllInstructorsComponent } from './instructors/view-all-instructors/view-all-instructors.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -64,6 +66,9 @@ export function tokenGetter() {
       TriggerRankAlgorithmComponent,
       ExportQuestionsComponent,
       BeginQuestionProcessComponent,
+      TaResponseCardComponent,
+      ImportEnrollmentDataComponent,
+      ViewAllInstructorsComponent,
 
   ],
   imports: [

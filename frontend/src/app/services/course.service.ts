@@ -22,6 +22,9 @@ export class CourseService {
     updateCourse(id, payload) {
         return this.http.patch(`${environment.baseURL}courses/${id}`, payload);
     }
+  uploadCourses(payload) {
+        return this.http.post(`${environment.baseURL}courses/`, payload);
+    }
 
     addInstructorToCourse(courseCode, _instructorId) {
         return this.http.patch(`${environment.baseURL}courses/${courseCode}/instructor/${_instructorId}`, {});

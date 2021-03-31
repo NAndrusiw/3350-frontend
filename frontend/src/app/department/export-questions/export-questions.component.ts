@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/forms/data.service';
 
 @Component({
-  selector: 'app-export-questions',
-  templateUrl: './export-questions.component.html',
-  styleUrls: ['./export-questions.component.scss']
+    selector: 'app-export-questions',
+    templateUrl: './export-questions.component.html',
+    styleUrls: ['./export-questions.component.scss']
 })
 export class ExportQuestionsComponent implements OnInit {
 
-  public allQuestions: any;
-  constructor(public dataService: DataService) { }
+    public allQuestions: any;
 
-  ngOnInit(): void {
-    this.loadQuestions()
-  }
+    constructor(public dataService: DataService) {
+    }
 
-  loadQuestions = () => this.dataService.getQuestions('').subscribe(res => {
-    this.allQuestions = res;
-  });
+    ngOnInit(): void {
+        this.loadQuestions();
+    }
+
+    loadQuestions = () => this.dataService.getQuestions('').subscribe(res => {
+        this.allQuestions = res;
+    });
+
+    downloadExcel(): void {
+        window.location.href= this.dataService.exportQuestionsUrl();
+    }
 
 
 }

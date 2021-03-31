@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CourseService} from '../services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../services/auth/auth.service';
+import {DataService} from '../services/forms/data.service';
 
 @Component({
   selector: 'app-view-course',
@@ -16,11 +17,14 @@ export class ViewCourseComponent implements OnInit {
   openQualificationsForm: boolean = false;
   openTestForm: boolean = false;
   linkInstructorsExpanded: boolean = false;
+  currentInstructorQuestionRecord: any;
+  showResponses: boolean = false;
 
-  constructor(public courseService: CourseService, private route: ActivatedRoute, public auth: AuthService) {
+  constructor(public courseService: CourseService, private route: ActivatedRoute, public auth: AuthService, public dataService: DataService) {
     this.route.params.subscribe(params=> {
       this.courseId = params.courseId;
       this.fetchCourse();
+      this.getInstructorQuestions();
     })
   }
 
@@ -54,6 +58,16 @@ export class ViewCourseComponent implements OnInit {
         return 'badge-soft-danger';
     }
     return 'badge-soft-info'
+  }
+
+  getInstructorQuestions(): void {
+    this.dataService.getQuestions(this.courseId).subscribe(res => {
+      let qualifications : any = res;
+      let instructorQuestionRecord = qualifications.filter(item => {
+        return item.instructor_id === this.auth.getId();
+      });
+      this.currentInstructorQuestionRecord = instructorQuestionRecord.length > 0 ? instructorQuestionRecord[0] : null;
+    })
   }
 
 }

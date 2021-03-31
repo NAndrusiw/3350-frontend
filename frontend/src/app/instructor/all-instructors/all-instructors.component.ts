@@ -20,6 +20,7 @@ export class AllInstructorsComponent implements OnInit {
     @Input() filteredInstructors: any;
     @Output() linkUpdatedEvent = new EventEmitter<string>();
     @Input() selectedCourse: any;
+    @Input() isBeingEdited: boolean;
 
 
 

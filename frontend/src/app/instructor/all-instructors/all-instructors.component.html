@@ -1,4 +1,3 @@
-<!--<h1>All Instructors</h1>-->
 <div class="card mb-0">
 
     <div class="card-body">
@@ -28,7 +27,7 @@
                         </p>
 
                     </div>
-                    <div class="col-auto ml-auto mr-n3" *ngIf="selectedCourse && auth.isDepartment()" data-select2-id="14">
+                    <div class="col-auto ml-auto mr-n3" *ngIf="selectedCourse && auth.isDepartment() && isBeingEdited" data-select2-id="14">
                         <button *ngIf="courseCanBeAssigned(instructor)" (click)="addInstructorToCourse(instructor)" class="btn btn-success btn-sm"><i class="fe fe-plus"></i> Assign to this course</button>
                         <button *ngIf="!courseCanBeAssigned(instructor)"  (click)="removeInstructorFromCourse(instructor)" class="btn btn-danger btn-sm"><i class="fe fe-minus"></i> Remove from this course</button>
                     </div>

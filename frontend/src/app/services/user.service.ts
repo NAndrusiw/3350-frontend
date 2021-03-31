@@ -35,4 +35,8 @@ export class UserService {
     getInstructors() {
         return this.http.get(`${environment.baseURL}users/instructors`)
     }
+
+    uploadInstructors(payload) {
+        return this.http.post(`${environment.baseURL}users/instructors/upload`, payload)
+    }
 }

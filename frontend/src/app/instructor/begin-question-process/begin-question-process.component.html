@@ -14,6 +14,18 @@
     </p>
 </div>
 
+<div *ngIf="currentStep === 4">
+    <p class="lead text-success">
+        <i class="fe fe-check-circle mr-3"></i> <strong>Applicant Responses Received!</strong> You're now able to rank the applicants.
+    </p>
+</div>
+
+
+<!--<div *ngIf="instructorQuestionRecord">-->
+<!--    <h3>Your Original Questions</h3>-->
+<!--    {{ instructorQuestionRecord | json }}-->
+<!--</div>-->
+
 
 <div class="animate__animated animate__fadeIn" *ngIf="currentStep === 2">
     <form (ngSubmit)="submitForm()" [formGroup]="instructorQuestionsForm">
