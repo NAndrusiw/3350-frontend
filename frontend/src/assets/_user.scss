@@ -26,7 +26,6 @@
 }
 
 
-
 .example-list {
   width: 100%;
   max-width: 100%;
@@ -76,4 +75,26 @@
   border: dotted 3px #c7d3e2;
   min-height: 108px;
   transition: transform 50ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+a.nav-link {
+  color: $black !important;
+}
+
+a.nav-link:hover {
+  background: lighten($primary, 55);
+  color: $primary !important;
+  //font-weight: bold;
+}
+
+a.nav-link.active {
+  background: lighten($primary, 55);
+  color: $primary !important;
+  //font-weight: bold;
+}
+
+a.nav-link.active:before {
+  top: 0 !important;
+  bottom: 0 !important;
+  border-left-width: 4px !important;
 }

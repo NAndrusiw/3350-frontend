@@ -1,6 +1,6 @@
 <div class="header mt-md-5">
-    <div class="header-body">
-        <div class="row align-items-end">
+    <div class="header-body ">
+        <div class="row align-items-end  animate__animated animate__faster animate__fadeInDown">
             <div class="col">
                 <!-- Title -->
                 <h1 class="header-title">
@@ -10,7 +10,6 @@
             </div>
             <div class="col-auto">
 
-
                 <input
                         type="file" class="d-none"
                         (change)="onFileSelected($event)" #fileUpload>
@@ -18,17 +17,16 @@
                 <div class="file-upload">
 
                     <!-- Button -->
-                    <button  (click)="fileUpload.click()" class="btn btn-white lift">
+                    <button (click)="fileUpload.click()" class="btn btn-white lift">
                         <i class="fe fe-upload"></i> Import Courses
                     </button>
 
-
-
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="card mt-4">
+<div class="card mt-4 animate__animated animate__faster animate__fadeInUp">
     <div class="card-body">
         <p class="lead text-muted">Browse all the courses that the department offers.</p>
 

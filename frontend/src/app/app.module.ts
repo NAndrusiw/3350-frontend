@@ -37,6 +37,7 @@ import { BeginQuestionProcessComponent } from './instructor/begin-question-proce
 import { TaResponseCardComponent } from './ta-response-card/ta-response-card.component';
 import { ImportEnrollmentDataComponent } from './department/import-enrollment-data/import-enrollment-data.component';
 import { ViewAllInstructorsComponent } from './instructors/view-all-instructors/view-all-instructors.component';
+import { ViewAllTasComponent } from './view-all-tas/view-all-tas.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -69,6 +70,7 @@ export function tokenGetter() {
       TaResponseCardComponent,
       ImportEnrollmentDataComponent,
       ViewAllInstructorsComponent,
+      ViewAllTasComponent,
 
   ],
   imports: [
@@ -96,4 +98,5 @@ export function tokenGetter() {
   bootstrap: [AppComponent]
 
 })
+
 export class AppModule { }
