@@ -21,9 +21,12 @@ export class ExportQuestionsComponent implements OnInit {
         this.allQuestions = res;
     });
 
-    downloadExcel(): void {
-        window.location.href= this.dataService.exportQuestionsUrl();
+    downloadAllExcel(): void {
+        window.location.href = this.dataService.exportQuestionsUrl();
     }
 
+    downloadExcelForCourse($question): void {
+        window.location.href = this.dataService.exportQuestionsForCourseUrl($question._id);
+    }
 
 }

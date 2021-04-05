@@ -40,6 +40,6 @@ export class ResponseService {
     }
 
     getFinalRank() {
-        return this.http.get(`${environment.baseURL}api/rank`);
+        return this.http.get(`${environment.baseURL}api/rankAll`);
     }
 }

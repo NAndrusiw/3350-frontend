@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../services/course.service';
+import {AuthService} from '../services/auth/auth.service';
 
 @Component({
     selector: 'app-browse-all-courses',
@@ -11,7 +12,7 @@ export class BrowseAllCoursesComponent implements OnInit {
     public allCourses: any;
     public fileName: string;
 
-    constructor(public courseService: CourseService) {
+    constructor(public courseService: CourseService, public auth: AuthService) {
 
     }
 
@@ -22,6 +23,18 @@ export class BrowseAllCoursesComponent implements OnInit {
 
     loadCourses = () => this.courseService.getCourses().subscribe(res => {
         this.allCourses = res;
+
+        if (this.auth.isInstructor()) {
+            let validCourses = [];
+            this.allCourses = this.allCourses.filter(course => {
+                course.instructors.forEach(instructor => {
+                    if (instructor.email == this.auth.getEmail()) {
+                        validCourses.push(course);
+                    }
+                });
+            });
+            this.allCourses = validCourses;
+        }
     });
 
     onFileSelected(event) {

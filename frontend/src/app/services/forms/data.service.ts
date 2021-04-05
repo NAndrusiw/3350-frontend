@@ -10,10 +10,6 @@ export class DataService {
     constructor(private http: HttpClient) {
     }
 
-    questionsData(questions) {
-        return this.http.post(`${environment.baseURL}api/testQuestionsForm`, questions);
-    }
-
     qualificationsData(qualifications) {
         return this.http.post(`${environment.baseURL}api/qualificationsForm`, qualifications);
     }
@@ -26,8 +22,12 @@ export class DataService {
         return this.http.get(`${environment.baseURL}api/qualificationsForm`);
     }
 
-    exportQuestionsUrl() : string {
+    exportQuestionsUrl(): string {
         return `${environment.baseURL}api/export/qualifications`;
+    }
+
+    exportQuestionsForCourseUrl($question_id): string {
+        return `${environment.baseURL}api/export/qualifications/` + $question_id;
     }
 
 

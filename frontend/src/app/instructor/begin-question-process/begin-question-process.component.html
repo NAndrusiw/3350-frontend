@@ -30,19 +30,13 @@
 <div class="animate__animated animate__fadeIn" *ngIf="currentStep === 2">
     <form (ngSubmit)="submitForm()" [formGroup]="instructorQuestionsForm">
         <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-5">
                 <label for="degree">Degree/Field of study</label> <input formControlName="degree" [ngClass]="{ 'is-invalid':  !instructorQuestionsForm.controls.degree.valid && instructorQuestionsForm.controls.degree.dirty }" type="text" placeholder="eg. Software Engineering" id="degree" class="form-control">
                 <div [hidden]="instructorQuestionsForm.controls.degree.valid" class="invalid-feedback">
                     Please enter a valid response.
                 </div>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="requiredTAHours">Required Weekly Hours of Applicant</label> <input placeholder="eg. 30" type="text"  [ngClass]="{ 'is-invalid':  !instructorQuestionsForm.controls.requiredTAHours.valid && instructorQuestionsForm.controls.requiredTAHours.dirty }" formControlName="requiredTAHours" id="requiredTAHours" class="form-control">
-                <div [hidden]="instructorQuestionsForm.controls.requiredTAHours.valid" class="invalid-feedback">
-                    Please enter a valid number of hours.
-                </div>
-            </div>
 
             <div class="form-group col-md-8">
                 <label for="requiredDescription">Mandatory Qualifications</label> <textarea
@@ -52,7 +46,7 @@
                     rows="3"
                     formControlName="requiredDescription"
                     id="requiredDescription"></textarea>
-                <div [hidden]="instructorQuestionsForm.controls.requiredTAHours.valid" class="invalid-feedback">
+                <div [hidden]="instructorQuestionsForm.controls.requiredDescription.valid" class="invalid-feedback">
                     Please enter mandatory qualifications / requirements for the applications.
                 </div>
             </div>

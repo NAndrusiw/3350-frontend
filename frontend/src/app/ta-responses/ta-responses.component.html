@@ -22,7 +22,7 @@
     to Import TA Responses
 </div>
 
-<button [disabled]="allResponses?.length === 0 || instructorRankings?.length === 0" (click)="startRanking()" class="btn btn-primary mb-3 btn-lg">
+<button (click)="startRanking()" class="btn btn-primary mb-3 btn-lg">
     Initiate Matching Algorithm
 </button>
 
@@ -43,6 +43,10 @@
                 <th scope="col">Course</th>
                 <th scope="col">TA Selected</th>
                 <th scope="col">Total Hours</th>
+                <th scope="col">Fundable Type</th>
+                <th scope="col">Applicant Ranking</th>
+                <th scope="col">Instructor Ranking</th>
+                <th scope="col">Score</th>
             </tr>
             </thead>
             <tbody>
@@ -50,6 +54,10 @@
                 <th scope="row">{{ rank.courseCode }}</th>
                 <td>{{ rank.taName }}</td>
                 <td>{{ rank.hoursAvailable }}</td>
+                <td>{{ getApplicantStatus(rank.applicantStatus) }}</td>
+                <td>#{{ rank.courseRanking }}</td>
+                <td>#{{ rank.instructorRanking }}</td>
+                <td>{{ rank.score }}</td>
             </tr>
             </tbody>
         </table>
@@ -98,7 +106,7 @@
                         <td>
 
                             <ol class="mb-0">
-                                <li *ngFor="let ta of instructorRank.taName">{{ ta }}</li>
+                                <li *ngFor="let ta of instructorRank.taEmails">{{ ta }}</li>
                             </ol>
                         </td>
                         <td>{{ instructorRank.updatedAt | dateAgo }}</td>

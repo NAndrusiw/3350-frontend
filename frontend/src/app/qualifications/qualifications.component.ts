@@ -18,7 +18,6 @@ export class QualificationsComponent implements OnInit {
   qualificationsForm = new FormGroup({
 
     courseCode:new FormControl('', Validators.required),
-    requiredTAHours: new FormControl('', Validators.required),
     degree: new FormControl('', [Validators.required, Validators.min(45)]), // check it
     requiredDescription: new FormControl('', Validators.required)
   });
@@ -26,8 +25,6 @@ export class QualificationsComponent implements OnInit {
 
   constructor(public dataService: DataService, private router: Router, private http: HttpClient, private auth: AuthService) {
 
-
-    const helper = new JwtHelperService();
 
   }
 

@@ -4,7 +4,6 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {QualificationsComponent} from './qualifications/qualifications.component';
-import {TestQuestionsComponent} from './test-questions/test-questions.component';
 import {AuthGuard} from './services/auth/auth.guard';
 import {DemoComponent} from './demo/demo.component';
 import {NewInstructorFormComponent} from './new-instructor-form/new-instructor-form.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path: 'demo', component: DemoComponent},
   {path: 'activate-account', component: RegisterComponent},
   {path: 'qualifications', component: QualificationsComponent},
-  {path: 'test-questions', component: TestQuestionsComponent},
   {path: 'users/add-instructor', component: NewInstructorFormComponent},
   {path: 'courses', component: BrowseAllCoursesComponent},
   {path: 'courses-open', component: BrowseOpenTaPositionComponent},

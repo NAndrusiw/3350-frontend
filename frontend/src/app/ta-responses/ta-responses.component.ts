@@ -41,4 +41,17 @@ export class TaResponsesComponent implements OnInit {
             this.algorithmRankings = res;
         })
     }
+
+    getApplicantStatus(applicantStatus: number) {
+        switch(applicantStatus) {
+            case 1:
+                return 'Fundable';
+            case 2:
+                return 'Not Fundable';
+            case 3:
+                return 'External';
+        }
+        return 'N/A';
+    }
+
 }

@@ -1,12 +1,10 @@
 <h1>Export Instructor Questions</h1>
-<p>You are able to <strong>
-    <a href="javascript:;" (click)="downloadExcel()">download an excel file</a>
-</strong> of all courses and their respective qualifications and questions that the instructor has set.
+<p>You can also <strong>
+    <a href="javascript:;" (click)="downloadAllExcel()">download an excel file</a>
+</strong> of
+    <strong>all courses</strong> and their respective qualifications and questions that the instructor has set. Alternatively, you can download it individually.
 </p>
 
-<div class="alert alert-light">
-    <i class="fe fe-info"></i> <strong> New Beta Feature!</strong>  You're now able to share the instructors' questions to applicants via a link. Their responses will be saved automatically.
-</div>
 
 <div class="card card-table">
     <div id="courses" class="table-responsive ">
@@ -17,9 +15,7 @@
                 <th>Instructor</th>
                 <th>Questions</th>
                 <th>Required Qualifications</th>
-                <th>Required TA Hours</th>
-                <th>added</th>
-                <th class="text-right">Share</th>
+                <th colspan="2">added</th>
             </tr>
             </thead>
 
@@ -36,12 +32,12 @@
                 </td>
 
                 <td>{{ question.requiredDescription }}</td>
-                <td>{{ question.requiredTAHours }} hours</td>
                 <td>{{ question.createdAt | dateAgo }}</td>
                 <td class="text-right text-nowrap">
 
-                    <button  data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." class="btn btn-sm btn-white">
-                        <i class="fe fe-share"></i> Get Link
+<!--                    <a href="">Download</a>-->
+                    <button (click)="downloadExcelForCourse(question)" class="btn btn-sm btn-link">
+                        <i class="fe fe-download"></i> Download
                     </button>
                 </td>
             </tr>

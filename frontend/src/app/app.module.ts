@@ -16,7 +16,6 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { HttpConfigInterceptor } from '../interceptor/httpconfig.interceptor';
-import { TestQuestionsComponent } from './test-questions/test-questions.component';
 import { QualificationsComponent } from './qualifications/qualifications.component';
 import { TextComponent } from './text/text.component';
 import { CoursesListComponent } from './instructor/courses-list/courses-list.component';
@@ -49,7 +48,6 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    TestQuestionsComponent,
     QualificationsComponent,
     TextComponent,
     CoursesListComponent,
