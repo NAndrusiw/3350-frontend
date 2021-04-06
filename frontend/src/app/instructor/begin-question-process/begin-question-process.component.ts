@@ -32,7 +32,6 @@ export class BeginQuestionProcessComponent implements OnInit {
 
     ngOnInit(): void {
         this.instructorQuestionsForm = this.formBuilder.group({
-            requiredTAHours: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
             degree: new FormControl('', [Validators.required, Validators.min(45)]), // check it
             requiredDescription: new FormControl('', Validators.required),
             questions: new FormArray([])

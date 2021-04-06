@@ -17,10 +17,14 @@ export class AuthService {
 
     // user$: Observable<User>;
 
-    public isSignedIn;
+    // public isSignedIn;
 
     constructor(private http: HttpClient, private router: Router) {
-        this.isSignedIn = localStorage.getItem('Token') != null && localStorage.getItem('Token') !== 'undefined';
+
+    }
+
+    get isSignedIn() {
+        return  localStorage.getItem('Token') != null && localStorage.getItem('Token') !== 'undefined';
     }
 
     registerForm = new FormGroup({

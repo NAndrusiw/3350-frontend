@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-body py-3">
+        <h3>Add a New Applicant</h3>
+        <form [formGroup]="linkApplicantForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="form-group col-md-4 col-lg-3">
+                    <label for="name">TA Name</label> <input
+                        type="text"
+                        [ngClass]="{ 'is-invalid':  !linkApplicantForm.controls.name.valid && linkApplicantForm.controls.name.dirty }"
+                        formControlName="name"
+                        placeholder="John Doe"
+                        id="name"
+                        class="form-control">
+                    <div [hidden]="linkApplicantForm.controls.name.valid" class="invalid-feedback">
+                        Please enter the TA's name
+                    </div>
+                </div>
+
+                <div class="form-group col-md-5 col-lg-3">
+                    <label for="degree">Email</label> <input
+                        type="text"
+                        [ngClass]="{ 'is-invalid':  !linkApplicantForm.controls.email.valid && linkApplicantForm.controls.email.dirty }"
+                        formControlName="email"
+                        placeholder="joe@uwo.ca"
+                        id="degree"
+                        class="form-control">
+                    <div [hidden]="linkApplicantForm.controls.email.valid" class="invalid-feedback">
+                        Please enter a valid email
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-2 col-md-3">
+                    <label for="hours">Total TA Hours</label>
+                    <div [ngClass]="{ 'is-invalid':  !linkApplicantForm.controls.hoursAvailable.valid && linkApplicantForm.controls.hoursAvailable.dirty }" class="input-group input-group-merge">
+
+                        <input
+                                [ngClass]="{ 'is-invalid':  !linkApplicantForm.controls.hoursAvailable.valid && linkApplicantForm.controls.hoursAvailable.dirty }"
+                                formControlName="hoursAvailable"
+                                type="text"
+                                id="hours"
+                                class="form-control form-control-appended">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                hours
+                            </div>
+                        </div>
+                    </div>
+                    <div [hidden]="linkApplicantForm.controls.hoursAvailable.valid" class="invalid-feedback">
+                        Please enter a valid number of hours.
+                    </div>
+                </div>
+
+                <div class="form-group  col-lg-2 col-md-3">
+                    <label for="status">Status</label>
+                    <select [ngClass]="{ 'is-invalid':  !linkApplicantForm.controls.status.valid && linkApplicantForm.controls.status.dirty }" formControlName="status" name="status" id="status" class="form-control">
+                        <option value="1">Fundable</option>
+                        <option value="2">Non-Fundable</option>
+                        <option value="3">External</option>
+                    </select>
+                    <div [hidden]="linkApplicantForm.controls.status.valid" class="invalid-feedback">
+                        Please select a valid status.
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label>&nbsp;</label>
+                    <button type="submit" [disabled]="linkApplicantForm.invalid" class="btn btn-success btn-block">
+                        <i class="fe fe-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

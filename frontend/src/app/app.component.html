@@ -18,6 +18,11 @@
             <img src="/assets/img/logo.png" class="navbar-brand-img mh-100 d-none d-md-block mx-auto">
         </a>
 
+<!--        <h6  *ngIf="auth.isSignedIn" class="navbar-heading text-primary">-->
+<!--                Signed in as <strong>{{ auth.isDepartment() ? 'Department' : 'Instructor' }}</strong>-->
+<!--        </h6>-->
+
+
         <!-- Collapse -->
         <div *ngIf="auth.getUser()" class="collapse navbar-collapse" id="sidebarCollapse">
 
@@ -131,6 +136,7 @@
             </button>
 
             <h4 class="text-muted font-weight-lighter mb-0">SE3350 TA Matching App</h4>
+
 
 
             <div class="collapse navbar-collapse ml-auto" id="navbar">

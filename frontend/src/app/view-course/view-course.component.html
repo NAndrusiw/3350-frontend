@@ -49,7 +49,7 @@
 
 <div [class.bg-danger]="!isEditingCourse" class="card shadow-lg mb-5 animate__animated animate__faster animate__fadeInUp" *ngIf="auth.isDepartment() && isEditingCourse">
     <div class="card-body">
-        <form (ngSubmit)="saveCourse()" [formGroup]="editCourseForm" >
+        <form (ngSubmit)="saveCourse()" [formGroup]="editCourseForm">
             <h2>Edit Course</h2>
 
             <div class="alert alert-light">
@@ -188,18 +188,13 @@
 
                             <!-- Heading -->
                             <span *ngIf="course.data.totalTaHours" class="h2 mb-0">
-                                {{ course.data.totalTaHours }} hours
-                            </span>
-                            <span *ngIf="!course.data.totalTaHours" class="h3 text-uppercase font-weight-light text-muted  mb-0">
-                                Not Yet Calculated
-                            </span>
+                                {{ course.data.totalTaHours }} hours </span> <span *ngIf="!course.data.totalTaHours" class="h3 text-uppercase font-weight-light text-muted  mb-0"> Not Yet Calculated </span>
                         </div>
                     </div> <!-- / .row -->
                 </div>
             </div>
 
         </div>
-
 
     </div>
 
@@ -242,62 +237,60 @@
     </div>
 
     <div>
-        <div class="row align-items-end mb-3 mt-5">
+        <div class="row align-items-end mt-5">
             <div class="col">
                 <h2 class="header-title">
                     Course TAs
                 </h2>
             </div>
             <div *ngIf="auth.isDepartment() && courseTas?.length > 0" class="col-auto">
-                <button class="btn btn-light lift">
-                    <i class="fe fe-edit-3"></i> Edit TAs
-                </button>
+
+                <a *ngIf="!this.isEditingApplicants" (click)="isEditingApplicants = true" class="btn btn-white lift">
+                    <i class="fe fe-edit-2"></i> Edit TAs
+                </a>
+                <a *ngIf="this.isEditingApplicants" (click)="isEditingApplicants = false" class="btn btn-danger lift">
+                    <i class="fe fe-x"></i> Cancel
+                </a>
+
             </div>
         </div>
 
         <div *ngIf="courseTas?.length > 0; else noTas">
+            <hr>
+
+            Total hours filled:  <span [class.text-success]="hoursFilled" [class.text-danger]="!hoursFilled"><strong>{{ totalFilled }}</strong> / <strong>{{ course.data.totalTaHours }}</strong></span>
+            <div *ngIf="!hoursFilled" class="alert alert-light mt-3">
+                <strong class="text-danger">Warning!</strong> There are not available applicants who qualify for this course.
+
+                <span *ngIf="auth.isDepartment()">Please
+                    <a class="font-weight-bold" (click)="isEditingApplicants = true" href="javascript:;">add a new TA</a>
+                   or
+                    <a class="font-weight-bold" href="javascript:;" (click)="isEditingCourse = true">change the hours</a>
+                   to fulfill the remaining {{ this.course.data.availableTaHours}} hours.
+                </span>
+            </div>
+            <hr>
+        </div>
+
+        <div *ngIf="isEditingApplicants" class="my-3">
+            <app-link-applicant-to-course (courseAddedEvent)="fetchCourse()" [courseCode]="course.data.courseCode"></app-link-applicant-to-course>
+        </div>
+        <div *ngIf="courseTas?.length > 0">
 
             <div *ngFor="let ta of courseTas">
-                <app-ta-response-card [noBottomPadding]="true" [compactMode]="true" [response]="ta"></app-ta-response-card>
+                <app-ta-response-card (approveApplicantEvent)="onApproveApplicantEventReceived($event)" (rejectApplicantEvent)="onRejectApplicantEventReceived($event)" (unlinkedCourseEvent)="unlinkTa($event)" [isApplicantEditingMode]="isEditingApplicants" [noBottomPadding]="true" [compactMode]="true" [response]="ta"></app-ta-response-card>
             </div>
         </div>
 
         <ng-template #noTas>
             <p class="text-muted">
                 There are currently no TAs in this course.
-            </p>
-            <p *ngIf="!requiresTa" class="text-muted">
+            <span *ngIf="!requiresTa" class="text-muted">
                 That could be because this course currently does not require TAs.
+            </span>
             </p>
         </ng-template>
 
-        <app-view-all-tas></app-view-all-tas>
     </div>
 </div>
-<!--<h2>Course Instructors</h2>-->
 
-<!--<div class="card card-table">-->
-<!--    <table class="table table-sm table-nowrap">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th scope="col">Class #</th>-->
-<!--            <th scope="col">Component</th>-->
-<!--            <th scope="col">Section #</th>-->
-<!--            <th scope="col">Start</th>-->
-<!--            <th scope="col">Capacity</th>-->
-<!--            <th scope="col">Class Status</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr *ngFor="let enrolment of course.enrolments">-->
-<!--            <th scope="row">{{ enrolment.classNumber }}</th>-->
-<!--            <td><span class="badge badge-soft-primary">{{ enrolment.component }}</span></td>-->
-<!--            <td>{{ enrolment.section }}</td>-->
-<!--            <td>{{ enrolment.startDate | dateAgo }}</td>-->
-<!--            <td>{{ enrolment.capEnrolment || '-' }}</td>-->
-<!--            <td>{{ enrolment.percentFull.toFixed(2) }}% full</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-
-<!--</div>-->

@@ -16,28 +16,41 @@
 
                     <!-- Title -->
                     <h3 class="mb-1">
-                        {{ response.taName }}
+                        {{ response.taName || response.name }} - <span class="text-success">{{ response.hoursAvailable }} hours</span>
                     </h3>
 
                     <!-- Time -->
                     <p class="card-text small text-muted">
-                        {{ response.applicantEmail }} <span class="text-muted"></span> · <span class="badge badge-soft-primary text-uppercase">{{ getApplicantStatus(response.applicantStatus) }}</span>
+                        {{ response.applicantEmail || response.email }} <span class="text-muted"></span> · <span class="badge badge-soft-primary text-uppercase">{{ getApplicantStatus(response.applicantStatus || response.status) }}</span>
                     </p>
 
                 </div>
                 <div class="col-auto">
+                    <!--                    -->
+                    <!--                    &lt;!&ndash; Dropdown &ndash;&gt;-->
+                    <!--                    <div class="dropdown">-->
+                    <!--                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--                            <i class="fe fe-more-vertical"></i>-->
+                    <!--                        </a>-->
+                    <!--                        <div class="dropdown-menu dropdown-menu-right">-->
+                    <!--                            <a href="#!" class="dropdown-item">-->
+                    <!--                                Express Concern-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
-                    <!-- Dropdown -->
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fe fe-more-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#!" class="dropdown-item">
-                                Express Concern
-                            </a>
-                        </div>
+                    <div *ngIf="auth.isInstructor() && canApproveOrDecline" class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button (click)="rejectApplicant(response._id)" type="button" class="btn btn-danger"><i class="fe fe-x"></i> Reject TA</button>
+                        <button (click)="approveApplicant(response._id)" type="button" class="btn btn-success"><i class="fe fe-check"></i> Approve TA</button>
                     </div>
+
+                    <span *ngIf="response.accepted" class="badge badge-success"> Approved <span *ngIf="auth.isDepartment()"> by instructor</span> </span>
+                    <span *ngIf="response.declined" class="badge badge-danger"> Rejected <span *ngIf="auth.isDepartment()"> by instructor</span> </span>
+
+                    <button *ngIf="isApplicantEditingMode" (click)="unlinkApplicantFromCourse(response._id)" class="btn btn-danger btn-sm rounded-pill ml-3">
+                        <i class="fe fe-x"></i> Remove
+                    </button>
+
 
                 </div>
             </div> <!-- / .row -->
@@ -129,8 +142,7 @@
             <!-- List -->
             <ol *ngIf="originalQuestions" class="mb-3">
                 <li *ngFor="let question of originalQuestions.questions; let i = index">
-                    <b>Q:</b> {{ question.question }} <br>
-                  <b>A:</b>  {{ response['a' + (i + 1)] }}
+                    <b>Q:</b> {{ question.question }} <br> <b>A:</b>  {{ response['a' + (i + 1)] }}
                 </li>
             </ol>
             <ol *ngIf="!originalQuestions" class="mb-3">

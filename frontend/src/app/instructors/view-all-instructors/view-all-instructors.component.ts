@@ -37,6 +37,7 @@ export class ViewAllInstructorsComponent implements OnInit {
             this.userService.uploadInstructors(formData).subscribe(res => {
                 this.successUpload = true;
                 this.getAllInstructors();
+                this.fileName = null;
             }, err => {
                 alert(err.error.msg);
             });

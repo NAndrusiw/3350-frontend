@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseService} from '../../services/course.service';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-browse-open-ta-position',
@@ -10,7 +11,7 @@ export class BrowseOpenTaPositionComponent implements OnInit {
 
   public coursesRequiringTa: any;
 
-  constructor(public courseService: CourseService) {
+  constructor(public courseService: CourseService, private auth: AuthService) {
 
   }
 
@@ -23,9 +24,16 @@ export class BrowseOpenTaPositionComponent implements OnInit {
 
   loadCourses = () => this.courseService.getCourses().subscribe(res => {
     this.coursesRequiringTa = res;
-    this.coursesRequiringTa  = this.coursesRequiringTa.filter(item => {
-      return item.requiresTa === true
-    })
+
+    let validCourses = [];
+    this.coursesRequiringTa = this.coursesRequiringTa.filter(course => {
+      course.instructors.forEach(instructor => {
+        if (instructor.email == this.auth.getEmail() && course.requiresTa) {
+          validCourses.push(course);
+        }
+      });
+    });
+    this.coursesRequiringTa = validCourses;
   })
 
 }

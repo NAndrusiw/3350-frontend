@@ -27,6 +27,8 @@ export class ViewCourseComponent implements OnInit {
     showResponses: boolean = false;
     isEditingCourse: boolean;
 
+    isEditingApplicants: boolean;
+
     courseTas: any;
 
     constructor(public courseService: CourseService, private route: ActivatedRoute, public auth: AuthService, public dataService: DataService) {
@@ -65,7 +67,7 @@ export class ViewCourseComponent implements OnInit {
     fetchCourse = () => this.courseService.fetchCourse(this.courseId).subscribe(res => {
         this.course = res;
         this.requiresTa = this.course.data.requiresTa;
-        this.courseTas = this.course.tas;
+        this.courseTas = this.course.data.applicants;
         this.prepareEditForm();
     });
 
@@ -92,6 +94,19 @@ export class ViewCourseComponent implements OnInit {
         return 'badge-soft-info';
     }
 
+    get totalFilled() {
+        let total = 0;
+        this.courseTas.forEach(item => {
+            total += item.hoursAvailable;
+        })
+        return total;
+    }
+
+    get hoursFilled() : boolean {
+       return this.totalFilled === this.course.data.totalTaHours;
+        // return this.course.data.availableTaHours != '0';
+    }
+
     getInstructorQuestions(): void {
         this.dataService.getQuestions(this.courseId).subscribe(res => {
             let qualifications: any = res;
@@ -101,5 +116,27 @@ export class ViewCourseComponent implements OnInit {
             this.currentInstructorQuestionRecord = instructorQuestionRecord.length > 0 ? instructorQuestionRecord[0] : null;
         });
     }
+
+    unlinkTa(ta_id : string): void {
+        this.courseService.unlinkApplicantFromCourse(this.courseId, ta_id).subscribe(res => {
+            this.fetchCourse();
+        }, err => {
+            console.log(err);
+        });
+    }
+
+
+    onApproveApplicantEventReceived(ta_id : string) {
+        this.courseService.acceptApplicant(ta_id).subscribe(res => {
+            this.fetchCourse();
+        })
+    }
+
+    onRejectApplicantEventReceived(ta_id: string) {
+        this.courseService.declineApplicant(ta_id).subscribe(res => {
+            this.fetchCourse();
+        })
+    }
+
 
 }

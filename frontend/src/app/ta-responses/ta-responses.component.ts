@@ -13,6 +13,8 @@ export class TaResponsesComponent implements OnInit {
      instructorRankings: any;
      algorithmRankings: any;
 
+     isLoading: boolean;
+
     constructor(private responseService: ResponseService) {
 
     }
@@ -37,8 +39,11 @@ export class TaResponsesComponent implements OnInit {
     }
 
     startRanking() {
+        this.isLoading = true;
+
         this.responseService.getFinalRank().subscribe(res => {
             this.algorithmRankings = res;
+            this.isLoading = false;
         })
     }
 
