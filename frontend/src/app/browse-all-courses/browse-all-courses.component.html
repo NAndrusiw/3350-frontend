@@ -33,8 +33,11 @@
 <div class="card mt-4 animate__animated animate__faster animate__fadeInUp">
 
     <div *ngIf="allCourses?.length === 0" class="card-body">
-        <div class="text-muted">
+        <div *ngIf="auth.isDepartment()" class="text-muted">
             There are no courses yet! Why don't you import some?
+        </div>
+        <div class="text-muted" *ngIf="auth.isInstructor()">
+            You are not added to any courses yet!
         </div>
     </div>
 

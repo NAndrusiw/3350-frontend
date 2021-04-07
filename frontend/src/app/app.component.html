@@ -136,6 +136,8 @@
             </button>
 
             <h4 class="text-muted font-weight-lighter mb-0">SE3350 TA Matching App</h4>
+            <h4 *ngIf="auth.isInstructor()" class="text-warning ml-3 font-weight-bold mb-0"><i class="fe fe-eye"></i> INSTRUCTOR</h4>
+            <h4 *ngIf="auth.isDepartment()" class="text-info ml-3 font-weight-bold mb-0"><i class="fe fe-eye"></i> DEPARTMENT</h4>
 
 
 

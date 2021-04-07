@@ -58,6 +58,10 @@ export class BeginQuestionProcessComponent implements OnInit {
     }
 
     submitForm() {
+
+        if (this.instructorQuestionsForm.invalid) {
+            return;
+        }
         let qualifications = this.instructorQuestionsForm.value;
         // qualifications.
         qualifications.instructorEmail = this.auth.getEmail();

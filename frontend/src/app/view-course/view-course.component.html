@@ -7,7 +7,7 @@
                 </h6>
                 <!-- Title -->
                 <h1 class="header-title">
-                    {{ course.data.courseCode }} - {{ course.data.courseName }}
+                    {{ course?.data?.courseCode }} - {{ course?.data?.courseName }}
                 </h1>
 
             </div>
@@ -117,7 +117,7 @@
 
                             <!-- Heading -->
                             <span class="h2 mb-0">
-                                {{ course.data.totalSections }}
+                                {{ course?.data?.totalSections }}
                             </span>
                         </div>
                     </div> <!-- / .row -->
@@ -141,7 +141,7 @@
 
                             <!-- Heading -->
                             <span class="h2 mb-0">
-                                {{ course.data.lecHours }}
+                                {{ course?.data?.lecHours }}
                             </span>
                         </div>
                     </div> <!-- / .row -->
@@ -164,7 +164,7 @@
 
                             <!-- Heading -->
                             <span class="h2 mb-0">
-                                {{ course.data.labHours || '-' }}
+                                {{ course?.data?.labHours || '-' }}
                             </span>
                         </div>
                     </div> <!-- / .row -->
@@ -198,7 +198,7 @@
 
     </div>
 
-    <div class="card shadow-lg mb-5" *ngIf="auth.isInstructor() && requiresTa">
+    <div class="card shadow-lg mb-5" *ngIf="auth.isInstructor() && requiresTa && courseTas?.length === 0">
         <div class="card-body">
 
             <app-begin-question-process [courseCode]="courseId"></app-begin-question-process>
@@ -266,7 +266,7 @@
                     <a class="font-weight-bold" (click)="isEditingApplicants = true" href="javascript:;">add a new TA</a>
                    or
                     <a class="font-weight-bold" href="javascript:;" (click)="isEditingCourse = true">change the hours</a>
-                   to fulfill the remaining {{ this.course.data.availableTaHours}} hours.
+                   to fulfill the remaining available hours.
                 </span>
             </div>
             <hr>

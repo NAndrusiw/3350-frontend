@@ -59,7 +59,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let rank of algorithmRankings">
-                <th scope="row">{{ rank.courseCode }}</th>
+                <th scope="row">
+                    <a class="text-warning" routerLink="/courses/{{ rank.courseCode }}">{{ rank.courseCode }}</a></th>
                 <td>{{ rank.taName }}</td>
                 <td>{{ rank.hoursAvailable }}</td>
                 <td>{{ getApplicantStatus(rank.applicantStatus) }}</td>

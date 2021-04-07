@@ -13,6 +13,7 @@ export class TaResponseCardComponent implements OnInit {
     @Input() noBottomPadding = false;
     @Input() originalQuestions;
     @Input() isApplicantEditingMode = false;
+    @Input() isInstructorRankMode = false;
     @Output() unlinkedCourseEvent  = new EventEmitter<string>();
     @Output() approveApplicantEvent = new EventEmitter<string>();
     @Output() rejectApplicantEvent = new EventEmitter<string>();
@@ -36,7 +37,7 @@ export class TaResponseCardComponent implements OnInit {
     }
 
     get canApproveOrDecline() {
-        return this.auth.isInstructor() && this.compactMode && (!this.response.accepted && !this.response.declined);
+        return this.auth.isInstructor() && this.compactMode && (!this.response.accepted && !this.response.declined) && !this.originalQuestions;
     }
 
     unlinkApplicantFromCourse(_ta_id) {

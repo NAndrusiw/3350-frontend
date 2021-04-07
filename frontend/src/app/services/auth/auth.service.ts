@@ -71,11 +71,11 @@ export class AuthService {
     }
 
     isInstructor() {
-        return this.getUser().data.role === 'instructor';
+        return this.getUser()?.data.role === 'instructor';
     }
 
     isDepartment() {
-        return this.getUser().data.role === 'department';
+        return this.getUser()?.data.role === 'department';
     }
 
 

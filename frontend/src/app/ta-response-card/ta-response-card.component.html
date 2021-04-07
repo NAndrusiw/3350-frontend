@@ -16,7 +16,8 @@
 
                     <!-- Title -->
                     <h3 class="mb-1">
-                        {{ response.taName || response.name }} - <span class="text-success">{{ response.hoursAvailable }} hours</span>
+                        {{ response.taName || response.name }}
+                        <span *ngIf="compactMode">- <span class="text-success">{{ response.hoursAvailable }} hours</span></span>
                     </h3>
 
                     <!-- Time -->
